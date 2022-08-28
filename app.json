@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FoodieVerse",
-    "slug": "FoodieVerse",
+    "name": "my-app",
+    "slug": "my-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,14 +25,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.lckuo.FoodieVerse"
+      "package": "linkulife.com.jome17"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "00d86e6f-5daf-4a29-9498-23fc3a7e4ff4"
+        "projectId": "edf841a9-23ea-40a4-be91-e0debcd3e1fb"
       }
     }
   }

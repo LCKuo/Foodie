@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import * as Google from 'expo-auth-session/providers/google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-export default function Landing({ navigation }) {
+import * as WebBrowser from 'expo-web-browser';
+import axios from 'axios';
+
+WebBrowser.maybeCompleteAuthSession();
+
+export default function Landing(props) {
 
     useEffect(() => {
         async () => {
             try {
-                await AsyncStorage.setItem("UserInfo", resp)
+                const aa = JSON.parse(resp)
+                await AsyncStorage.setItem("name", aa.name ? aa.name : 'Nnone')
+                await AsyncStorage.setItem("picture", aa.picture ? aa.picture : "Pnone")
+                await AsyncStorage.setItem("email", aa.email ? aa.email : "Enone")
+                await AsyncStorage.setItem("local", aa.local ? aa.local : "Lnone")
+                await AsyncStorage.setItem("login", "1")
+                props.doLin()
             } catch (err) {
                 alert(err)
             }
         }
-    }, [resp])
+    }, [
 
-    const [resp, setResp] = useState('none');
+    ])
+
+    const [resp, setResp] = useState('');
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [requestG, responseG, promptAsyncG] = Google.useAuthRequest({
         expoClientId: 'x',
         iosClientId: 'xx',
-        androidClientId: '1027851673622-bftlt6ubcsfisjje04rgn3g813ktran6.apps.googleusercontent.com',
+        androidClientId: '506129948022-iuou972u0c9frtqrt28un6hs40igf4u6.apps.googleusercontent.com',
         webClientId: 'x',
     });
     useEffect(
@@ -43,6 +56,9 @@ export default function Landing({ navigation }) {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text>{resp ? JSON.parse(resp).name : "none"}...</Text>
+            <Text>{resp}...</Text>
+
             <Button
                 disabled={!requestG}
                 title="Google"
@@ -51,8 +67,18 @@ export default function Landing({ navigation }) {
                 }}
             />
             <Button
-                title='登入'
-                onPress={() => navigation.navigate("Login")}
+                disabled={!requestG}
+                title="lin"
+                onPress={() => {
+                    props.doLin()
+                }}
+            />
+            <Button
+                disabled={!requestG}
+                title="Lout"
+                onPress={() => {
+                    props.doLout()
+                }}
             />
         </View>
     )
