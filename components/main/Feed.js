@@ -22,10 +22,15 @@ export default function Feed() {
 
     const getEmail = async () => {
         try {
-            setname(await AsyncStorage.getItem("name"))
-            setpicture(await AsyncStorage.getItem("picture"))
-            setemail(await AsyncStorage.getItem("email"))
-            setlocal(await AsyncStorage.getItem("local"))
+            const name = await AsyncStorage.getItem("name")
+            const picture = await AsyncStorage.getItem("picture")
+            const email = await AsyncStorage.getItem("email")
+            const local = await AsyncStorage.getItem("local")
+
+            setname(name)
+            setpicture(picture)
+            setemail(email)
+            setlocal(local)
         } catch (err) {
             alert(err)
         }
