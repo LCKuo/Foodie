@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
@@ -14,9 +14,26 @@ export default function Scan() {
     }, []);
 
     const handleBarCodeScanned = ({ type, data }) => {
-        //setScanned(false);
-        alert(`類型:${type} 資料:${data} has been scanned!`);
+        if (scanned) {
+            setScanned(false)
+            createTwoButtonAlert(type, data)
+        }
     };
+
+    const createTwoButtonAlert = (type, data) =>
+        Alert.alert(
+            `Scan a QR type : ${type}`,
+            `You have scaned : ${data}`,
+            [
+                {
+                    text: "OK", onPress: () => {
+                        setScanned(true)
+                    }
+                }
+            ]
+        );
+
+
 
     if (hasPermission === null) {
         return <View />;
@@ -26,7 +43,7 @@ export default function Scan() {
     }
     return (
         <View style={styles.container}>
-            {scanned && <BarCodeScanner
+            {<BarCodeScanner
                 onBarCodeScanned={!scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
             />}
