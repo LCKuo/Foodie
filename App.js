@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import MainScreen from './components/Main';
-import AddScreen from './components/main/Add';
+import AddScreen from './components/main/Scan';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -21,28 +21,30 @@ export class App extends Component {
       loggedIn: false,
     }
   }
-  componentDidMount() {
 
+  checkLogin = async () => {
+    try {
+      let isLogin = await AsyncStorage.getItem("name")
+      if (isLogin) {
+        this.setState({
+          loggedIn: true
+        })
+      } else {
+        this.setState({
+          loggedIn: false
+        })
+      }
+    } catch (err) {
+      alert(err)
+    }
     this.setState({
       loaded: true
     })
-    async () => {
-      try {
-        let userInf = await AsyncStorage.getItem("login")
-        if (userInf === "1") {
-          this.setState({
-            loggedIn: true
-          })
-        } else {
-          this.setState({
-            loggedIn: false
-          })
-        }
-      } catch (err) {
-        alert(err)
-      }
+  };
 
-    }
+
+  componentDidMount() {
+    this.checkLogin();
   }
 
   doLin = () => {
@@ -51,16 +53,13 @@ export class App extends Component {
     })
   }
 
-  doLout = () => {
-    this.setState({
-      loggedIn: false
-    })
+  doLout = (bool) => {
+    if (bool) {
+      this.setState({
+        loggedIn: false
+      })
+    }
   }
-
-
-
-
-
   render() {
 
     if (!this.state.loaded) {
@@ -79,7 +78,12 @@ export class App extends Component {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
+            <Stack.Screen
+              name="Main"
+              component={MainScreen}
+              options={{ headerShown: false }}
+              initialParams={{ doLout: this.doLout }}
+            />
             <Stack.Screen name="Add" component={AddScreen} />
           </Stack.Navigator>
         </NavigationContainer>

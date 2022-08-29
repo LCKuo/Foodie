@@ -10,6 +10,7 @@ export default function Profile() {
                 onPress={onLogout}
                 title="Logout"
             />
+
         </View>
     )
 }

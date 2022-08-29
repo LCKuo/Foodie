@@ -1,4 +1,4 @@
-package linkulife.com.jome17.newarchitecture.components;
+package com.lckuo.FoodieVerse.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

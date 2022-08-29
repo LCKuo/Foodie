@@ -1,4 +1,4 @@
-package linkulife.com.jome17;
+package com.lckuo.FoodieVerse;
 
 import android.app.Application;
 import android.content.Context;
@@ -12,7 +12,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import linkulife.com.jome17.newarchitecture.MainApplicationReactNativeHost;
+import com.lckuo.FoodieVerse.newarchitecture.MainApplicationReactNativeHost;
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -88,7 +88,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("linkulife.com.jome17.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.lckuo.FoodieVerse.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

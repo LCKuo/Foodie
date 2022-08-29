@@ -20,38 +20,46 @@ export default function Feed() {
     const [email, setemail] = useState('');
     const [local, setlocal] = useState('');
 
-    const getEmail = async () => {
+    const getInfo = async () => {
         try {
-            const name = await AsyncStorage.getItem("name")
-            const picture = await AsyncStorage.getItem("picture")
-            const email = await AsyncStorage.getItem("email")
-            const local = await AsyncStorage.getItem("local")
+            const _name = await AsyncStorage.getItem("name")
+            const _picture = await AsyncStorage.getItem("picture")
+            const _email = await AsyncStorage.getItem("email")
+            const _local = await AsyncStorage.getItem("local")
 
-            setname(name)
-            setpicture(picture)
-            setemail(email)
-            setlocal(local)
+            setname(_name)
+            setpicture(_picture)
+            setemail(_email)
+            setlocal(_local)
         } catch (err) {
             alert(err)
         }
     }
-    getEmail()
+    getInfo()
     return (
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>"</Text>
-
-            <Image
-                style={styles.tinyLogo}
-                source={{
-                    uri: picture ? { picture } : "https://reactnative.dev/img/tiny_logo.png",
-                }}
-            />
-            <Text>"</Text>
-
-            <Text>{name ? name : "undefine"}</Text>
-            <Text>{email ? email : "undefine"}</Text>
-            <Text>{local ? local : "undefine"}</Text>
+            <Image source={{ uri: picture }} style={stylesA.profilePic} />
+            <Text>{name ? name : "undefine name"}</Text>
+            <Text>{email ? email : "undefine email"}</Text>
+            <Text>{local ? local : "undefine local"}</Text>
         </View>
     )
 }
+
+const stylesA = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    userInfo: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    profilePic: {
+        width: 50,
+        height: 50
+    }
+});

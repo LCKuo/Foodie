@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "FoodieVerse",
+    "slug": "FoodieVerse",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "linkulife.com.jome17"
+      "package": "com.lckuo.FoodieVerse"
     },
     "web": {
       "favicon": "./assets/favicon.png"

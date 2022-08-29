@@ -1,4 +1,4 @@
-package linkulife.com.jome17;
+package com.lckuo.FoodieVerse;
 
 import android.os.Build;
 import android.os.Bundle;
