@@ -17,8 +17,15 @@ import ProfileScreen from './main/Profile';
 const EmptyScreen = () => {
     return (null)
 }
-export default function Main() {
+export default function Main(props) {
 
+    Combine = () => {
+        return (
+            <>
+                <ProfileScreen doLout={props.doLout} />
+            </>
+        );
+    }
     return (
         <Tab.Navigator initalRouteName="Feed" labeled={false}>
             <Tab.Screen name="Feed" component={FeedScreen} options={{
@@ -42,7 +49,7 @@ export default function Main() {
                 }} labeled={false} />
             <Tab.Screen
                 name="Profile"
-                component={ProfileScreen}
+                component={Combine}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="account-circle" color={color} size={26} />

@@ -24,8 +24,8 @@ export class App extends Component {
 
   checkLogin = async () => {
     try {
-      let isLogin = await AsyncStorage.getItem("name")
-      if (isLogin) {
+      let userName = await AsyncStorage.getItem("name")
+      if (userName) {
         this.setState({
           loggedIn: true
         })
@@ -60,6 +60,15 @@ export class App extends Component {
       })
     }
   }
+
+
+  Combine = () => {
+    return (
+      <>
+        <MainScreen doLout={this.doLout} />
+      </>
+    );
+  }
   render() {
 
     if (!this.state.loaded) {
@@ -80,7 +89,7 @@ export class App extends Component {
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen
               name="Main"
-              component={MainScreen}
+              component={this.Combine}
               options={{ headerShown: false }}
               initialParams={{ doLout: this.doLout }}
             />
