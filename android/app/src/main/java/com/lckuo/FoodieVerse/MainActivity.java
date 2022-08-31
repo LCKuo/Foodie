@@ -1,4 +1,4 @@
-package com.lckuo.FoodieVerse;
+package com.lckuo.foodieverse;
 
 import android.os.Build;
 import android.os.Bundle;

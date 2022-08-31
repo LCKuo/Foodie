@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FoodieVerse",
-    "slug": "FoodieVerse",
+    "name": "foodieverse",
+    "slug": "foodieverse",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.lckuo.FoodieVerse"
+      "package": "com.lckuo.foodieverse"
     },
     "web": {
       "favicon": "./assets/favicon.png"

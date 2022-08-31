@@ -1,4 +1,4 @@
-package com.lckuo.FoodieVerse.newarchitecture.components;
+package com.lckuo.foodieverse.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

@@ -1,4 +1,4 @@
-package com.lckuo.FoodieVerse.newarchitecture;
+package com.lckuo.foodieverse.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -20,9 +20,9 @@ import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.lckuo.FoodieVerse.BuildConfig;
-import com.lckuo.FoodieVerse.newarchitecture.components.MainComponentsRegistry;
-import com.lckuo.FoodieVerse.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.lckuo.foodieverse.BuildConfig;
+import com.lckuo.foodieverse.newarchitecture.components.MainComponentsRegistry;
+import com.lckuo.foodieverse.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
