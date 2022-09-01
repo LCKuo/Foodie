@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Component, React, useState } from 'react';
+import { Component, React } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import MainScreen from './components/Main';
-import AddScreen from './components/main/Scan';
+import ScanScreen from './components/main/Scan';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -19,16 +19,18 @@ export class App extends Component {
     this.state = {
       loaded: false,
       loggedIn: false,
+      name: '',
+      picture: '',
+      email: ''
     }
   }
 
   checkLogin = async () => {
+    this.doLoading()
     try {
       let userName = await AsyncStorage.getItem("name")
       if (userName) {
-        this.setState({
-          loggedIn: true
-        })
+        this.getInfo()
       } else {
         this.setState({
           loggedIn: false
@@ -48,9 +50,7 @@ export class App extends Component {
   }
 
   doLin = () => {
-    this.setState({
-      loggedIn: true
-    })
+    this.getInfo()
   }
 
   doLout = (bool) => {
@@ -60,12 +60,36 @@ export class App extends Component {
       })
     }
   }
-
+  doLoading = () => {
+    this.setState({ loaded: false })
+  }
+  getInfo = async () => {
+    try {
+      const _name = await AsyncStorage.getItem("name")
+      const _picture = await AsyncStorage.getItem("picture")
+      const _email = await AsyncStorage.getItem("email")
+      //拿站台東西寫這，拿完再 loggedIn: true 
+      this.setState({
+        loggedIn: true,
+        name: _name,
+        picture: _picture,
+        email: _email
+      })
+      this.setState({ loaded: true })
+    } catch (err) {
+      alert(err)
+    }
+  }
 
   Combine = () => {
     return (
       <>
-        <MainScreen doLout={this.doLout} />
+        <MainScreen
+          doLout={this.doLout}
+          name={this.state.name}
+          picture={this.state.picture}
+          email={this.state.email}
+        />
       </>
     );
   }
@@ -81,7 +105,7 @@ export class App extends Component {
 
     if (!this.state.loggedIn) {
       return (
-        <LandingScreen doLin={this.doLin} doLout={this.doLout} />
+        <LandingScreen doLin={this.doLin} doLout={this.doLout} doLoading={this.doLoading} />
       )
     } else {
       return (
@@ -93,7 +117,7 @@ export class App extends Component {
               options={{ headerShown: false }}
               initialParams={{ doLout: this.doLout }}
             />
-            <Stack.Screen name="Add" component={AddScreen} />
+            <Stack.Screen name="Add" component={ScanScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       )

@@ -1,17 +1,12 @@
 //https://reactnavigation.org/
 
-import React, { Component } from 'react'
-import { View, Text } from 'react-native';
-
+import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 //https://oblador.github.io/react-native-vector-icons/
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 const Tab = createMaterialBottomTabNavigator();
-
 import FeedScreen from './main/Feed';
 import ProfileScreen from './main/Profile';
-
-
 
 
 const EmptyScreen = () => {
@@ -22,7 +17,12 @@ export default function Main(props) {
     Combine = () => {
         return (
             <>
-                <ProfileScreen doLout={props.doLout} />
+                <ProfileScreen
+                    doLout={props.doLout}
+                    name={props.name}
+                    picture={props.picture}
+                    email={props.email}
+                />
             </>
         );
     }

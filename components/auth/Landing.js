@@ -8,22 +8,30 @@ import axios from "axios";
 WebBrowser.maybeCompleteAuthSession();
 
 export default function Landing(props) {
+    const restoreToken = async () => {
+        try {
+            await AsyncStorage.setItem("token", token)
+        } catch (e) {
 
+        }
+    }
     const restoreState = async (jsonFile) => {
         try {
-            if (!jsonFile.error) {
+            if (jsonFile) {
+                props.doLoading()
                 await AsyncStorage.setItem("name", jsonFile.name ? jsonFile.name : "")
                 await AsyncStorage.setItem("picture", jsonFile.picture ? jsonFile.picture : "")
                 await AsyncStorage.setItem("email", jsonFile.email ? jsonFile.email : "")
                 await AsyncStorage.setItem("local", jsonFile.id ? jsonFile.id : "")
                 props.doLin()
             } else {
-                alert(JSON.stringify(jsonFile))
             }
-        } catch (e) { }
+        } catch (e) {
+        }
     };
 
     const [userInfo, setUserInfo] = React.useState();
+    const [token, setToke] = React.useState();
     const [requestG, responseG, promptAsyncG] = Google.useAuthRequest({
         expoClientId: 'x',
         iosClientId: 'xx',
@@ -37,17 +45,22 @@ export default function Landing(props) {
             if (responseG?.type === 'success') {
                 const { authentication } = responseG;
                 //console.log(authentication)
-                console.log('atoken=' + authentication.accessToken)
+                setToke(authentication.accessToken)
                 axios.get('https://www.googleapis.com/oauth2/v3/userinfo?access_token=' + authentication.accessToken)
                     .then(function (response) {
                         const userDetails = response.data;
-                        setUserInfo(userDetails);
-                        restoreState(userInfo)
+                        setUserInfo(userDetails)
                     })
             }
 
         }, [responseG]);
 
+    useEffect(() => {
+        restoreState(userInfo)
+    }, [userInfo])
+    useEffect(() => {
+        restoreToken
+    }, [token])
 
     return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -56,21 +69,6 @@ export default function Landing(props) {
                 title={"Login"}
                 onPress={() => { promptAsyncG({ useProxy: false, showInRecents: true }) }}
             />
-            <Button
-                disabled={!requestG}
-                title="Google"
-                onPress={() => {
-                    promptAsyncG();
-                }}
-            />
-            <Button
-                disabled={!requestG}
-                title="ForceLogin"
-                onPress={() => {
-                    props.doLin();
-                }}
-            />
-
         </View>
     )
 }

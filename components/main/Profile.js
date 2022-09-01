@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, Image, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Profile(props) {
@@ -17,12 +17,20 @@ export default function Profile(props) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Profile</Text>
+            <Image source={{ uri: props.picture }} style={styles.profilePic} />
+            <Text>{props.name}</Text>
+            <Text>{props.email}</Text>
             <Button
                 onPress={onLogout}
                 title="Logout"
             />
-
         </View>
     )
 }
 
+const styles = StyleSheet.create({
+    profilePic: {
+        width: 50,
+        height: 50
+    }
+});
