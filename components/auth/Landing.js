@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ImageBackground } from 'react-native';
 import * as Google from 'expo-auth-session/providers/google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import axios from "axios";
+import image from "../main/pngs/login.png";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -63,12 +64,13 @@ export default function Landing(props) {
     }, [token])
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text>{/*JSON.stringify(userInfo)*/}</Text>
-            <Button
-                title={"Login"}
-                onPress={() => { promptAsyncG({ useProxy: false, showInRecents: true }) }}
-            />
+
+        <View style={styles.container}>
+            <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+                <Button
+                    title={"Login"}
+                    onPress={() => { promptAsyncG({ useProxy: false, showInRecents: true }) }}
+                /></ImageBackground>
         </View>
     )
 }
@@ -76,16 +78,17 @@ export default function Landing(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
-    userInfo: {
-        alignItems: 'center',
-        justifyContent: 'center',
+    image: {
+        flex: 1,
+        justifyContent: "center"
     },
-    profilePic: {
-        width: 50,
-        height: 50
+    text: {
+        color: "white",
+        fontSize: 42,
+        lineHeight: 84,
+        fontWeight: "bold",
+        textAlign: "center",
+        backgroundColor: "#000000c0"
     }
 });

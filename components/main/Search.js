@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet } from 'react-native'
-import image from "./pngs/Home.png";
+import image from "./pngs/search.png";
 
-export default function Feed() {
+export default function Search() {
     return (
 
         <View style={styles.container}>
             <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-                <Text style={styles.text}>HomePage</Text>
+                <Text style={styles.text}>SearchPage</Text>
             </ImageBackground>
         </View>
     )

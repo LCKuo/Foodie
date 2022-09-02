@@ -7,6 +7,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 const Tab = createMaterialBottomTabNavigator();
 import FeedScreen from './main/Feed';
 import ProfileScreen from './main/Profile';
+import Search from './main/Search';
+import Market from './main/Market';
 
 
 const EmptyScreen = () => {
@@ -34,6 +36,12 @@ export default function Main(props) {
                 ),
                 headerShown: false,
             }} />
+            <Tab.Screen name="Search" component={Search} options={{
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="store-search" color={color} size={26} />
+                ),
+                headerShown: false,
+            }} />
             <Tab.Screen name="AddContainer" component={EmptyScreen}
                 listeners={({ navigation }) => ({
                     tabPress: event => {
@@ -47,6 +55,14 @@ export default function Main(props) {
                     ),
                     headerShown: false,
                 }} labeled={false} />
+
+
+            <Tab.Screen name="Market" component={Market} options={{
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="basket" color={color} size={26} />
+                ),
+                headerShown: false,
+            }} />
             <Tab.Screen
                 name="Profile"
                 component={Combine}
