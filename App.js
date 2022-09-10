@@ -8,10 +8,14 @@ import MainScreen from './components/Main';
 import ScanScreen from './components/main/Scan';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Search from './components/SearchComps/Search';
+import SearchLevel2 from './components/SearchComps/SearchLevel2';
+import SearchLevel3 from './components/SearchComps/SearchLevel3';
+
+import Feed from './components/FeedComps/Feed';
+import FeedLevel2 from './components/FeedComps/FeedLevel2';
 
 const Stack = createStackNavigator();
-
-
 export class App extends Component {
 
   constructor(props) {
@@ -118,6 +122,11 @@ export class App extends Component {
               initialParams={{ doLout: this.doLout }}
             />
             <Stack.Screen name="Add" component={ScanScreen} />
+            <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
+            <Stack.Screen name="SearchLevel2" component={SearchLevel2} options={{ headerShown: false }} />
+            <Stack.Screen name="SearchLevel3" component={SearchLevel3} options={{ headerShown: false }} />
+            <Stack.Screen name="FeedLevel2" component={FeedLevel2} options={{ headerShown: false }} />
+            <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       )

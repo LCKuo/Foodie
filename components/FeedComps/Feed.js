@@ -3,7 +3,7 @@ import { View, Text, Button, Image, StyleSheet, ImageBackground } from 'react-na
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
-export default function Profile(props) {
+export default function ProfileF(props) {
     function onLogout() {
         clearState();
     }
