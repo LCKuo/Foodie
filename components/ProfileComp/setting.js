@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-export default function setting({ navigation }) {
+export default function Setting({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>

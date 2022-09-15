@@ -1,24 +1,15 @@
-//https://reactnavigation.org/
-
 import React from 'react'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-//https://oblador.github.io/react-native-vector-icons/
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 const Tab = createMaterialBottomTabNavigator();
-import FeedScreen from './FeedComps/Feed';
 import ProfileScreen from './ProfileComp/Profile';
 import Market from './main/Market';
 import Search from './SearchComps/Search';
-import { View, Image, StyleSheet } from 'react-native';
+import FeedV2 from './FeedComps/FeedV2';
 import Scan from './main/Scan';
-import Feed from './FeedComps/Feed';
-import ProfileF from './FeedComps/Feed';
+import { View, Image, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 
-const EmptyScreen = () => {
-    return (null)
-}
 export default function Main(props, navigation) {
-
     Combine = () => {
         return (
             <>
@@ -33,153 +24,302 @@ export default function Main(props, navigation) {
         );
     }
     const [tabIndex, setTabIndex] = React.useState(0);
-    return (
-        <Tab.Navigator labeled={false}
-            barStyle={{
-                backgroundColor: '#F0AB6B',
-                borderTopLeftRadius: 24,
-                borderTopRightRadius: 24,
-                overflow: 'hidden',
-                height: 70,
-                bottom: -1,
-                position: 'absolute',  //removes white corners
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}
-            initialRouteName="Feed"
-            labelStyle={{ fontSize: 12 }}>
-            <Tab.Screen
-                name="Feed"
-                component={ProfileF}
-                listeners={{
-                    tabPress: e => {
-                        //e.preventDefault();
-                        setTabIndex(0);
-                    },
+
+    if (Platform.OS === 'ios') {
+        return (
+            <Tab.Navigator labeled={false}
+                barStyle={{
+                    backgroundColor: '#F0AB6B',
+                    borderTopLeftRadius: 24,
+                    borderTopRightRadius: 24,
+                    overflow: 'hidden',
+                    height: 120,
+                    bottom: -30,
+                    position: 'absolute',  //removes white corners
+                    alignItems: 'center',
+                    justifyContent: 'center'
                 }}
-                options={{
-                    activeColor: "#ff0000",
-                    tabBarIcon: ({ focused, color, size }) => {
-                        return (
-                            <View>
-                                {tabIndex == 0 &&
-                                    <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                initialRouteName="Feed"
+                labelStyle={{ fontSize: 12 }}>
+                <Tab.Screen
+                    name="Feed"
+                    component={FeedV2}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault();
+                            setTabIndex(0);
+                        },
+                    }}
+                    options={{
+                        activeColor: "#ff0000",
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 0 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab1.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 0 &&
                                         <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab1.png')} />
-                                    </View>
-                                }
-                                {tabIndex != 0 &&
-                                    <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab1.png')} />
-                                }
-                            </View>
-                        )
-                    }
-                }}
-            />
-            <Tab.Screen
-                name="Search"
-                component={Search}
-                listeners={{
-                    tabPress: e => {
-                        //e.preventDefault();
-                        setTabIndex(1);
-                    },
-                }}
-                options={{
-                    tabBarIcon: ({ focused, color, size }) => {
-                        return (
-                            <View>
-                                {tabIndex == 1 &&
-                                    <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                    }
+                                </View>
+                            )
+                        }
+                    }}
+                />
+                <Tab.Screen
+                    name="Search"
+                    component={Search}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault();
+                            setTabIndex(1);
+                        },
+                    }}
+                    options={{
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 1 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab2.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 1 &&
                                         <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab2.png')} />
-                                    </View>
-                                }
-                                {tabIndex != 1 &&
-                                    <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab2.png')} />
-                                }
-                            </View>
-                        )
-                    }
-                }}
-            />
-            <Tab.Screen name="AddContainer" component={Scan}
-                listeners={({ navigation }) => ({
-                    tabPress: event => {
-                        setTabIndex(2);
-                        //event.preventDefault();
-                        //navigation.navigate("Add")
-                    }
-                })}
-                options={{
-                    tabBarLabel: '',
-                    tabBarIcon: ({ focused, color, size }) => {
-                        return (
-                            <View>
-                                {tabIndex == 2 &&
-                                    <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                    }
+                                </View>
+                            )
+                        }
+                    }}
+                />
+                <Tab.Screen name="AddContainer" component={Scan}
+                    listeners={({ navigation }) => ({
+                        tabPress: event => {
+                            setTabIndex(2);
+                            //event.preventDefault();
+                            //navigation.navigate("Add")
+                        }
+                    })}
+                    options={{
+                        tabBarLabel: '',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 2 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab3.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 2 &&
                                         <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab3.png')} />
-                                    </View>
-                                }
-                                {tabIndex != 2 &&
-                                    <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab3.png')} />
-                                }
-                            </View>
-                        )
-                    }
-                }} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
 
-            <Tab.Screen name="Market" component={Market}
-                listeners={{
-                    tabPress: e => {
-                        //e.preventDefault()
-                        setTabIndex(4);
-                    },
-                }}
-                options={{
-                    tabBarLabel: 'Market',
-                    tabBarIcon: ({ focused, color, size }) => {
-                        return (
-                            <View>
-                                {tabIndex == 4 &&
-                                    <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                <Tab.Screen name="Market" component={Market}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault()
+                            setTabIndex(4);
+                        },
+                    }}
+                    options={{
+                        tabBarLabel: 'Market',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 4 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 4 &&
                                         <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
-                                    </View>
-                                }
-                                {tabIndex != 4 &&
-                                    <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
-                                }
-                            </View>
-                        )
-                    }
-                }} />
-            <Tab.Screen
-                name="Profile"
-                component={Combine}
-                listeners={{
-                    tabPress: e => {
-                        //e.preventDefault()
-                        setTabIndex(5);
-                    },
-                }}
-                options={{
-                    tabBarLabel: 'Profile',
-                    tabBarIcon: ({ focused, color, size }) => {
-                        return (
-                            <View>
-                                {tabIndex == 5 &&
-                                    <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
+                <Tab.Screen
+                    name="Profile"
+                    component={Combine}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault()
+                            setTabIndex(5);
+                        },
+                    }}
+                    options={{
+                        tabBarLabel: 'Profile',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 5 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab5.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 5 &&
                                         <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab5.png')} />
-                                    </View>
-                                }
-                                {tabIndex != 5 &&
-                                    <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab5.png')} />
-                                }
-                            </View>
-                        )
-                    }
-                }} />
-        </Tab.Navigator>
-    );
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
+            </Tab.Navigator>
+        );
+    } else {
+        return (
+            <Tab.Navigator labeled={false}
+                barStyle={{
+                    backgroundColor: '#F0AB6B',
+                    borderTopLeftRadius: 24,
+                    borderTopRightRadius: 24,
+                    overflow: 'hidden',
+                    height: 70,
+                    bottom: -1,
+                    position: 'absolute',  //removes white corners
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+                initialRouteName="Feed"
+                labelStyle={{ fontSize: 12 }}>
+                <Tab.Screen
+                    name="Feed"
+                    component={FeedV2}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault();
+                            setTabIndex(0);
+                        },
+                    }}
+                    options={{
+                        activeColor: "#ff0000",
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 0 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab1.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 0 &&
+                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab1.png')} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }}
+                />
+                <Tab.Screen
+                    name="Search"
+                    component={Search}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault();
+                            setTabIndex(1);
+                        },
+                    }}
+                    options={{
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 1 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab2.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 1 &&
+                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab2.png')} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }}
+                />
+                <Tab.Screen name="AddContainer" component={Scan}
+                    listeners={({ navigation }) => ({
+                        tabPress: event => {
+                            setTabIndex(2);
+                            //event.preventDefault();
+                            //navigation.navigate("Add")
+                        }
+                    })}
+                    options={{
+                        tabBarLabel: '',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 2 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab3.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 2 &&
+                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab3.png')} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
 
+                <Tab.Screen name="Market" component={Market}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault()
+                            setTabIndex(4);
+                        },
+                    }}
+                    options={{
+                        tabBarLabel: 'Market',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 4 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 4 &&
+                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
+                <Tab.Screen
+                    name="Profile"
+                    component={Combine}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault()
+                            setTabIndex(5);
+                        },
+                    }}
+                    options={{
+                        tabBarLabel: 'Profile',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 5 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab5.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 5 &&
+                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab5.png')} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
+            </Tab.Navigator>
+        );
+    }
 }
 
 

@@ -9,7 +9,9 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 const { width } = Dimensions.get('window');
 
 export default function Profile(props) {
-
+    clickSetting = () => {
+        alert('aaa')
+    }
     const window = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
@@ -55,7 +57,7 @@ export default function Profile(props) {
                     </TouchableOpacity>
                     <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{props.name}</Text>
 
-                    <TouchableOpacity onPress={() => { props.navigation.navigate('setting') }} style={{ position: 'absolute', right: 4, top: 0, width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => { clickSetting() }} style={{ position: 'absolute', right: 4, top: 0, width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
                         <Image style={{ width: 32, height: 32 }} source={require('./assets/icon_setting.png')} />
                     </TouchableOpacity>
                 </View>

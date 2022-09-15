@@ -70,7 +70,12 @@ export default function Landing(props) {
                 <Button
                     title={"Login"}
                     onPress={() => { promptAsyncG({ useProxy: false, showInRecents: true }) }}
-                /></ImageBackground>
+                />
+                <Button
+                    title={"ForceLin"}
+                    onPress={() => { props.doLin() }}
+                />
+            </ImageBackground>
         </View>
     )
 }

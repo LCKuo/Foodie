@@ -43,7 +43,7 @@ export default function SearchLevel2({ navigation }) {
         <Item navigation={navigation} item={item} title={item.title} />
     );
 
-    clickBtn = (val) => {
+    clickBtn = () => {
         navigation.goBack();
     };
 
@@ -51,12 +51,13 @@ export default function SearchLevel2({ navigation }) {
         <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF3E3' }}>
 
             <View style={{ width: '100%', height: 50 }}>
-                <TouchableOpacity onPress={clickBtn} style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image style={{ width: 32, height: 32 }} source={require('./assets/icon_back.png')} />
-                </TouchableOpacity>
                 <View style={{ width: '100%', position: 'absolute', left: 0, top: 0, bottom: 0, right: 0, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ fontSize: 25, color: '#FFF3E3', textShadowColor: "#000000", textShadowRadius: 6, textShadowOffset: { width: -1, height: 1 } }}>咖啡館</Text>
                 </View>
+                <TouchableOpacity onPress={clickBtn} style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center' }}>
+                    <Image style={{ width: 32, height: 32 }} source={require('./assets/icon_back.png')} />
+                </TouchableOpacity>
+
             </View>
 
             <FlatList style={{ flex: 1 }}
