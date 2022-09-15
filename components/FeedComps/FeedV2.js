@@ -205,10 +205,8 @@ export default function FeedV2({ navigation }) {
     // const renderListItem = ({ item }) => (
     //     <Item bottomSheetRefCoupon={bottomSheetRefCoupon} bottomSheetRef={bottomSheetRef} navigation={navigation} item={item} title={item.title} />
     // );
-    async function wait100ms() {
-        console.log("Start");
-        await delayAsync(5000);
-        console.log("100ms later");
+    async function wait500ms() {
+        await delayAsync(500);
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -221,10 +219,8 @@ export default function FeedV2({ navigation }) {
 
                     <ScrollView
                         onScrollEndDrag={(e) => {
-                            wait100ms()
                             var s = parseFloat(e.nativeEvent.contentOffset.x / ScrollViewW)
-                            console.log("change :")
-                            console.log(s)
+                            console.log(parseInt(s))
 
                             setScrollIndex(parseInt(s));
                         }}
