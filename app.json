@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "foodieverse",
-    "slug": "foodieverse",
-    "version": "1.0.0",
+    "name": "FoodieVerse",
+    "slug": "FoodieVerse",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,21 +18,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.demiverse.io.foodieverse",
+      "buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.lckuo.foodieverse"
+      "package": "com.demiverse.io.foodieverse",
+      "versionCode": "3"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "edf841a9-23ea-40a4-be91-e0debcd3e1fb"
+        "projectId": "ec184218-c589-45b2-8bf2-cdd7db13fc14"
       }
     }
   }

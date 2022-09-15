@@ -17,7 +17,7 @@ import ProfileF from './FeedComps/Feed';
 const EmptyScreen = () => {
     return (null)
 }
-export default function Main(props) {
+export default function Main(props, navigation) {
 
     Combine = () => {
         return (
@@ -27,6 +27,7 @@ export default function Main(props) {
                     name={props.name}
                     picture={props.picture}
                     email={props.email}
+                    navigation={navigation}
                 />
             </>
         );

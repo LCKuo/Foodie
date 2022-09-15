@@ -35,7 +35,7 @@ export default function Landing(props) {
     const [token, setToke] = React.useState();
     const [requestG, responseG, promptAsyncG] = Google.useAuthRequest({
         expoClientId: 'x',
-        iosClientId: 'xx',
+        iosClientId: '1027851673622-7uh64821bbftqcb0c54dan8t9t7t4ksi.apps.googleusercontent.com',
         androidClientId: '1027851673622-bftlt6ubcsfisjje04rgn3g813ktran6.apps.googleusercontent.com',
         webClientId: 'x',
     });

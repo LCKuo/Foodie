@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pc-api-9097898943185311672-931",
+  "private_key_id": "3c164f38ee861008aad99fff5131a36873fa656a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDNjDgjOT+tED+Z\npuY6Iu5hMgTO83hAKOiyZbtShbjA3O01AxBviz2UNgBPnZyqL2fdPyr0vf3+6FYr\ntY3vh8vsm+z2QfWETJ+prnHxJLukj0hHE42vG4FApQhcr2OYzWv93jrFtsXSZkuW\neSP7wWOSMMirW8YV9LjX+Msax54jRIWWEJrwVei2r6AcRlyCinNSoQNMDznAheeE\nk8uaHhhsG9pyJ/FOOUNifRuitpxUQh9u0JOVv7RBXOh9p0/7/FL2jQbImyrvwuga\nm2KqqZg6tFHK2ZEPAgaphn1AyG723OCjLp/Uao8m73V1EFkLD8G7fMiz9+1go/rG\na02De19DAgMBAAECggEAVJ55LecPk8uwoyzWcvCWemUBHcGVq7Qrt+WxrFNor91D\nuiM8zO7htvZUQnJ8YIOLmsW6hW8B9cLoVq4zdHzPMuUuNGMLFCAHSu+J8OBSb3id\nJMWj+oa0O0y1mJKLyggngSfPwj1wSyHZ1GSir635s+Fpe0IY1kkdH6xI0QmEzLdX\nzIpty+/x0efQdCIBEFsZGr7tXJD8yDukdqhiZZuf6Gwo2UMZp/Z9v4WluG+sBb6l\n68VGNqIXf2JhwxhP+seLoZabhxn/EAZLYGtKwVJwUqnWJB9yYUabeOf4YsebhYAB\niGXRF4V10k42xiin19jG+05qAmxYCGt6VuPDLQLZQQKBgQDvVW15IvRyoV+yQaAP\n89lXHKFNUGemxpIbPT3j5pzw2T0cuhTES6mPpgAg755MtI3bOXA2qtwwF9D3C4Qa\nJbgQS1ZxHO4RajdstZJVJI238dxz/HDVbUN9Zz6wpp8PJKlwl/VYx7waBicN21IX\n+JttYiodRZ9UroYxlqEzu1ZOqwKBgQDb3H5LYKA4d161dHQ58AEkM6U6OD6xvtqX\nAd8jCtsD7zYs1cFlJyXLSWEb9yvaXtC8MjvezBExVSNUuDgOTCgJpqzqLZQRRDaL\n6rjdIGsvN+7lmzGtAz0kzJccZLjuvtlOVjoi55N/VwTROR4barrIhoNQcn+qc3V4\ns58xa3rRyQKBgDoRkx8qEP9jEhHxBEH6m0gchTJ6CLwZP8fmIwcRpBB31PEMYQ+D\ngB9/WlajbNgVkrmXBRfuesAcdzIJlEK31iH19YI6T7Tf/ZSdtWR9Gvl/cEqf/Ex8\nVzys+TPpKXyGG6pa5EdnJsd1qLIe/ZsdUbDHeYpioxbrxVlwv6oKkRVDAoGBAJur\n1FSEtw0kIA/0w7KeKAC8/JlrZ6Cs1NMlBRwnvIldn4tBUmzPuifk7fhCG2/DwKHw\nI4oODYJTmO+MfExLSfIDbN1mpjdPiBurd3dCVAIb5W/3YcXxzCI5Jil5e6O3x996\nmDFMrJf2Qjft7E5XVKdU7rdQSuqiU6PB8s6oHk9ZAoGAHUyeLZGqbwqHgoSMxelE\nZklZKznVSgdxrLe+Et7sQ1zjeZZywGpT8TxsYcyaRNtLS00jZxlbb58S2KGhIX2z\n/DJLgB7iDTUgKtO8WIP4rsnwlEVbAisGM7Jg3qoYtZb6xYUD/m7cVQiVZEx/HLCe\nskD7W9PQOZnjZt2zoK6HRoU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "foodieverse-service-account@pc-api-9097898943185311672-931.iam.gserviceaccount.com",
+  "client_id": "111419039959704905723",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/foodieverse-service-account%40pc-api-9097898943185311672-931.iam.gserviceaccount.com"
+}
