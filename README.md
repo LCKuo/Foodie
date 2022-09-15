@@ -1,10 +1,13 @@
 初始(一次性)
+
 eas build:configure
 
 可切換 ios 或 android
+
 eas build --platform android
 
 提交，亦可切換 ios 或 android
+
 eas submit -p android --latest 
 
 如果要推上store，app.json裡的
