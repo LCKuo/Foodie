@@ -7,7 +7,7 @@ import axios from "axios";
 import image from "../main/pngs/login.png";
 
 WebBrowser.maybeCompleteAuthSession();
-
+export var userName = "Desa";
 export default function Landing(props) {
     const restoreToken = async () => {
         try {
@@ -21,6 +21,7 @@ export default function Landing(props) {
             if (jsonFile) {
                 props.doLoading()
                 await AsyncStorage.setItem("name", jsonFile.name ? jsonFile.name : "")
+                userName = jsonFile.name ? jsonFile.name : "Desa setting"
                 await AsyncStorage.setItem("picture", jsonFile.picture ? jsonFile.picture : "")
                 await AsyncStorage.setItem("email", jsonFile.email ? jsonFile.email : "")
                 await AsyncStorage.setItem("local", jsonFile.id ? jsonFile.id : "")

@@ -6,7 +6,6 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Collapsible from 'react-native-collapsible';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { Dialog } from 'react-native-simple-dialogs';
-import delayAsync from 'delay-async';
 
 const { width } = Dimensions.get('window');
 
@@ -18,7 +17,7 @@ const DATA = [
         img: 'https://media-cdn.tripadvisor.com/media/photo-s/17/f5/39/f7/fooood-at-the-food-department.jpg',
         collapsed: false,
         btn1: ['權益1', '權益2'],
-        btn2: ['優惠眷1', '優惠眷1'],
+        btn2: ['優惠眷1', '優惠眷12', '優惠眷1', '優惠眷1', '優惠眷1'],
         desc: "康寶藍真的很好喝，我還是第一次喝，就在這家亞洲50大好喝的咖啡廳喝到，真的很幸運，一點也沒有濃縮咖啡的苦味，也沒有鮮奶油的甜膩，一切配合得恰到好處，台灣真的很棒，很多一直朝著自己目標努力的人，一直被看見，包含這家咖啡店，對老闆有興趣的可以自己去谷歌，有些創業史介紹！推薦給大家，讓好店一直好下去～ 也可以讓我們一直可以大聲的說，我在喝咖啡或是在前往咖啡店的路上，享受著美好咖啡"
     },
     {
@@ -28,7 +27,7 @@ const DATA = [
         img: 'https://web-assets.bcg.com/3c/3d/794ddde7481695d246407d66e179/food-for-thought-the-untapped-climate-opportunity-in-alternative-proteins-rectangle.jpg',
         collapsed: false,
         btn1: ['權益11', '權益22'],
-        btn2: ['優惠眷11', '優惠眷12'],
+        btn2: ['優惠眷11', '優惠眷12', '優惠眷12', '優惠眷12'],
         desc: "康寶藍真的很好喝，我還是第一次喝，就在這家亞洲50大好喝的咖啡廳喝到，真的很幸運，一點也沒有濃縮咖啡的苦味，也沒有鮮奶油的甜膩，一切配合得恰到好處，台灣真的很棒，很多一直朝著自己目標努力的人，一直被看見，包含這家咖啡店，對老闆有興趣的可以自己去谷歌，有些創業史介紹！推薦給大家，讓好店一直好下去～ 也可以讓我們一直可以大聲的說，我在喝咖啡或是在前往咖啡店的路上，享受著美好咖啡"
     },
     {
@@ -38,7 +37,7 @@ const DATA = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeMAY3Z-205kWN7XF5u2F8GdNrSs6-RvcMOw&usqp=CAU',
         collapsed: false,
         btn1: ['權益111', '權益222'],
-        btn2: ['優惠眷111', '優惠眷222'],
+        btn2: ['優惠眷111', '優惠眷222', '優惠眷222'],
         desc: "康寶藍真的很好喝，我還是第一次喝，就在這家亞洲50大好喝的咖啡廳喝到，真的很幸運，一點也沒有濃縮咖啡的苦味，也沒有鮮奶油的甜膩，一切配合得恰到好處，台灣真的很棒，很多一直朝著自己目標努力的人，一直被看見，包含這家咖啡店，對老闆有興趣的可以自己去谷歌，有些創業史介紹！推薦給大家，讓好店一直好下去～ 也可以讓我們一直可以大聲的說，我在喝咖啡或是在前往咖啡店的路上，享受著美好咖啡"
     }
 ];
@@ -70,7 +69,7 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
             <View onLayout={(event) => {
                 var { x, y, width, height } = event.nativeEvent.layout;
                 setCollHeaderH(height);
-            }} style={{ zIndex: 2, position: 'absolute', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, right: '0%', flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+            }} style={{ zIndex: 2, position: 'absolute', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
                 <TouchableOpacity onPress={clickColl} style={{ marginRight: 16 }}>
                     <Image style={{ width: 40, height: 40, resizeMode: 'stretch' }} source={require('./assets/icon_arrow_down.png')} />
                 </TouchableOpacity>
@@ -78,7 +77,7 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
             {/* absolute文字標題背景 */}
             <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />
             {/* 下半摺疊選單 */}
-            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: 1071 / 789, zIndex: 8, backgroundColor: 'red', marginTop: -collHeaderH }}>
+            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: 1071 / 789, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
                 <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
 
@@ -129,13 +128,19 @@ function CollapsibleItem2({ navigation, collapsed, data, setshowDialog2 }) {
     const clickBtn1 = ({ }) => {
         setshowDialog2(true)
     };
+    temp = 0;
+    data.btn2.map((d, i) => {
+        temp = i
+    })
+    console.log(temp)
+    temp = (1071 / ((temp + 1) * (300 + (4 - temp) * 12)))
 
     return (
         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', width: '96%' }}>
             {/* 水豚圖 */}
             <Image style={{ zIndex: 3, resizeMode: 'stretch', width: 142, height: undefined, aspectRatio: 1 / 1, marginLeft: 8 }} source={require('./assets/coll2.png')} />
             {/* absolute文字標題 */}
-            <View style={{ zIndex: 2, position: 'absolute', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, right: '0%', flexDirection: 'row', flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+            <View style={{ zIndex: 2, position: 'absolute', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', flexDirection: 'row', flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                 <Text style={{ marginLeft: 160, fontSize: 22, color: '#FFF3E3', textShadowColor: "#000000", textShadowRadius: 6, textShadowOffset: { width: -1, height: 1 } }}>我的優惠卷</Text>
             </View>
             {/* absolute下拉箭頭icon */}
@@ -149,19 +154,28 @@ function CollapsibleItem2({ navigation, collapsed, data, setshowDialog2 }) {
             </View>
             {/* absolute文字標題背景 */}
             <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />
+
             {/* 下半摺疊選單 */}
-            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: 1071 / 789, zIndex: 8, backgroundColor: 'red', marginTop: -collHeaderH }}>
+
+            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
                 <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
-                    {data.btn2.map((d, i) => {
-                        return (
-                            <TouchableOpacity onPress={clickBtn1} style={{ width: '85%', aspectRatio: 861 / 138 }}>
-                                <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={styles.text}>{d}</Text>
-                                </ImageBackground>
-                            </TouchableOpacity>
-                        )
-                    })}
+                    <View style={{ height: 20 }}></View>
+
+                    {
+                        data.btn2.map((d, i) => {
+                            return (
+                                <>
+                                    <TouchableOpacity onPress={clickBtn1} style={{ width: '85%', aspectRatio: 861 / 138 }}>
+                                        <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Text style={styles.text}>{d}</Text>
+                                        </ImageBackground>
+                                    </TouchableOpacity>
+                                    <View style={{ height: 20 }}></View>
+                                </>
+                            )
+                        })
+                    }
                 </View>
                 {/* <View style={{ zIndex: 0, width: '100%', height: undefined, aspectRatio: 1071 / 789, flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'blue', marginTop: -collHeaderH, zIndex: 0 }}>
                     <Image style={{ width: '100%', height: '100%', resizeMode: 'stretch' }} source={require('./assets/coll_bg.png')} />
@@ -204,10 +218,7 @@ export default function FeedV2({ navigation }) {
 
     // const renderListItem = ({ item }) => (
     //     <Item bottomSheetRefCoupon={bottomSheetRefCoupon} bottomSheetRef={bottomSheetRef} navigation={navigation} item={item} title={item.title} />
-    // );
-    async function wait500ms() {
-        await delayAsync(500);
-    }
+    // );    
     return (
         <SafeAreaView style={styles.container}>
 
@@ -218,12 +229,11 @@ export default function FeedV2({ navigation }) {
                     <View style={{ height: 16 }}></View>
 
                     <ScrollView
-                        onScrollEndDrag={(e) => {
+                        onScroll={(e) => {
                             var s = parseFloat(e.nativeEvent.contentOffset.x / ScrollViewW)
-                            console.log(parseInt(s))
-
                             setScrollIndex(parseInt(s));
                         }}
+
                         onLayout={(event) => {
                             var { x, y, width, height } = event.nativeEvent.layout;
                             setScrollViewH(height);
@@ -248,6 +258,7 @@ export default function FeedV2({ navigation }) {
                     </ScrollView>
 
                     <CollapsibleItem setshowDialog1={setshowDialog1} data={DATA[ScrollIndex]} />
+                    <View style={{ height: 30 }}></View>
                     <CollapsibleItem2 setshowDialog2={setshowDialog2} data={DATA[ScrollIndex]} />
                     <Image style={{ zIndex: 1, position: 'absolute', left: 0, top: 40, resizeMode: 'stretch', width: '39%', height: undefined, aspectRatio: 470 / 334 }} source={require('./assets/leaf_left.png')} />
                     <Image style={{ zIndex: 1, position: 'absolute', right: 0, top: ScrollViewH - 10, resizeMode: 'stretch', width: '39%', height: undefined, aspectRatio: 475 / 300 }} source={require('./assets/leaf_right.png')} />

@@ -10,13 +10,16 @@ import { View, Image, StyleSheet } from 'react-native';
 import { Platform } from 'react-native';
 
 export default function Main(props, navigation) {
+    const EmptyScreen = () => {
+        return null;
+    }
     Combine = () => {
         return (
             <>
                 <ProfileScreen
                     doLout={props.doLout}
-                    name={props.name}
-                    picture={props.picture}
+                    name={props.name ? props.name : "Default user"}
+                    picture={props.picture ? props.picture : "http://image.uc.cn/s/wemedia/s/upload/2021/0a9c2211bc7d49468c41e23207d766db.png"}
                     email={props.email}
                     navigation={navigation}
                 />

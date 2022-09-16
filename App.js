@@ -15,6 +15,8 @@ import SearchLevel3 from './components/SearchComps/SearchLevel3';
 import Feed from './components/FeedComps/Feed';
 import FeedLevel2 from './components/FeedComps/FeedLevel2';
 
+import Main from './components/Main';
+
 const Stack = createStackNavigator();
 export class App extends Component {
 
@@ -125,8 +127,6 @@ export class App extends Component {
             <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
             <Stack.Screen name="SearchLevel2" component={SearchLevel2} options={{ headerShown: false }} />
             <Stack.Screen name="SearchLevel3" component={SearchLevel3} options={{ headerShown: false }} />
-            <Stack.Screen name="FeedLevel2" component={FeedLevel2} options={{ headerShown: false }} />
-            <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
 
           </Stack.Navigator>
         </NavigationContainer>

@@ -1,16 +1,32 @@
 import * as React from 'react';
-import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ImageBackground, Dimensions, useWindowDimensions, ScrollView } from 'react-native';
+import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ImageBackground, Dimensions, useWindowDimensions, ScrollView, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Divider } from 'react-native-paper';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { userName } from '../auth/Landing';
+import { AsyncStorage } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 export default function Profile(props) {
     clickSetting = () => {
-        alert('aaa')
+        Alert.alert(
+            "您正在登出",
+            "請確認是否登出?",
+            [
+                {
+                    text: "確認", onPress: () => {
+                        onLogout()
+                    }
+                }, {
+                    text: "取消", onPress: () => {
+                    }
+                }
+            ]
+
+        );
     }
     const window = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
@@ -44,7 +60,9 @@ export default function Profile(props) {
         try {
             await AsyncStorage.clear()
             props.doLout(true)
-        } catch (e) { }
+        } catch (e) {
+            alert(`cleaning error ${e}`)
+        }
     };
 
     return (
@@ -55,7 +73,7 @@ export default function Profile(props) {
                         <ImageBackground source={{ uri: props.picture }} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: window.width * 0.4 / 2, overflow: 'hidden' }}>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{props.name}</Text>
+                    <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{userName}</Text>
 
                     <TouchableOpacity onPress={() => { clickSetting() }} style={{ position: 'absolute', right: 4, top: 0, width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
                         <Image style={{ width: 32, height: 32 }} source={require('./assets/icon_setting.png')} />
