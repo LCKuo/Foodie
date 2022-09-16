@@ -75,11 +75,13 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
                 </TouchableOpacity>
             </View>
             {/* absolute文字標題背景 */}
-            <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />
+            {!coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />}
+            {coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/nonbutton.png')} />}
+
             {/* 下半摺疊選單 */}
-            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: 1071 / 789, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
+            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: 1071 / 789, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: 0 }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
-                <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
+                <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: 0 }}>
 
                     {data.btn1.map((d, i) => {
                         return (
@@ -251,7 +253,9 @@ export default function FeedV2({ navigation }) {
                         {DATA.map((inf) => {
                             return (
                                 <View style={styles.swiper_view}>
-                                    <Image style={{ resizeMode: 'cover', aspectRatio: 1 / 1, width: '100%', height: undefined, borderRadius: 16 }} source={{ uri: inf.img }} />
+                                    <TouchableOpacity onPress={() => { }}>
+                                        <Image style={{ resizeMode: 'cover', aspectRatio: 1 / 1, width: '100%', height: undefined, borderRadius: 16 }} source={{ uri: inf.img }} />
+                                    </TouchableOpacity >
                                 </View>
                             )
                         })}

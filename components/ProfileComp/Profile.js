@@ -99,6 +99,7 @@ export default function Profile(props) {
 function FirstRoute({ navigation }) {
     return (
         <View style={{ flex: 1, backgroundColor: '#FFF3E3' }} >
+
             <ScrollView
                 onLayout={(event) => {
                     var { x, y, width, height } = event.nativeEvent.layout;
@@ -106,7 +107,7 @@ function FirstRoute({ navigation }) {
                 }}
                 style={{ aspectRatio: 1 / 1, width: '100%', height: undefined, marginTop: 8 }}
                 // ref={scrollView}
-                pagingEnabled={false}
+                pagingEnabled={true}
                 horizontal={true}
                 contentInset={{
                     top: 0,
@@ -117,8 +118,8 @@ function FirstRoute({ navigation }) {
                 {[1, 2, 3, 3, 3, 3, 3].map((answer, i) => {
                     return (
                         <View style={[styles.swiper_view, { width: width }]}>
-                            <TouchableOpacity style={{ width: '100%', height: '100%', paddingLeft: 0, paddingRight: 0 }} onPress={() => { }}>
-                                <Image style={{ width: '100%', height: '100%', resizeMode: 'stretch', borderRadius: 16 }} source={require('./assets/demo2.png')} />
+                            <TouchableOpacity onPress={() => { }}>
+                                <Image style={{ resizeMode: 'cover', aspectRatio: 1 / 1, width: '100%', height: undefined, borderRadius: 16 }} source={require('./assets/demo2.png')} />
                             </TouchableOpacity>
                         </View>
                     )
@@ -155,6 +156,18 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         justifyContent: "center"
+    },
+    swiper_view: {
+        marginTop: 0,
+        width: width,
+        height: undefined,
+        aspectRatio: 1 / 1,
+        borderRadius: 10,
+        paddingLeft: 8,
+        paddingRight: 8,
+        borderRadius: 16,
+        margin: 0
+        //paddingHorizontal : 30
     },
     text: {
         color: "white",
