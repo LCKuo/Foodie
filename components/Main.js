@@ -123,30 +123,7 @@ export default function Main(props, navigation) {
                         }
                     }} />
 
-                <Tab.Screen name="Market" component={Market}
-                    listeners={{
-                        tabPress: e => {
-                            //e.preventDefault()
-                            setTabIndex(4);
-                        },
-                    }}
-                    options={{
-                        tabBarLabel: 'Market',
-                        tabBarIcon: ({ focused, color, size }) => {
-                            return (
-                                <View>
-                                    {tabIndex == 4 &&
-                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
-                                        </View>
-                                    }
-                                    {tabIndex != 4 &&
-                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
-                                    }
-                                </View>
-                            )
-                        }
-                    }} />
+
                 <Tab.Screen
                     name="Profile"
                     component={Combine}

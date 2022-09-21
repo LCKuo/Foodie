@@ -1,46 +1,23 @@
 import React, { useRef } from 'react';
-import { Text, View, Image, StyleSheet, Button, ScrollView, Dimensions, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Text, View, Image, StyleSheet, Button, ScrollView, Dimensions, ImageBackground, TouchableOpacity, FlatList, Alert, RefreshControl } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Collapsible from 'react-native-collapsible';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { Dialog } from 'react-native-simple-dialogs';
-
+import { GetReward, Reward_Data, RewardRedemption } from '../lib'
 const { width } = Dimensions.get('window');
+const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+};
 
-const DATA = [
-    {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "網美咖啡館",
-        imgs: ['', '', '', '', '', '', '', '', ''],
-        img: 'https://media-cdn.tripadvisor.com/media/photo-s/17/f5/39/f7/fooood-at-the-food-department.jpg',
-        collapsed: false,
-        btn1: ['權益1', '權益2'],
-        btn2: ['優惠眷1', '優惠眷12', '優惠眷1', '優惠眷1', '優惠眷1'],
-        desc: "康寶藍真的很好喝，我還是第一次喝，就在這家亞洲50大好喝的咖啡廳喝到，真的很幸運，一點也沒有濃縮咖啡的苦味，也沒有鮮奶油的甜膩，一切配合得恰到好處，台灣真的很棒，很多一直朝著自己目標努力的人，一直被看見，包含這家咖啡店，對老闆有興趣的可以自己去谷歌，有些創業史介紹！推薦給大家，讓好店一直好下去～ 也可以讓我們一直可以大聲的說，我在喝咖啡或是在前往咖啡店的路上，享受著美好咖啡"
-    },
-    {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "網美咖啡館",
-        imgs: ['', '', '', '', '', '', '', '', ''],
-        img: 'https://web-assets.bcg.com/3c/3d/794ddde7481695d246407d66e179/food-for-thought-the-untapped-climate-opportunity-in-alternative-proteins-rectangle.jpg',
-        collapsed: false,
-        btn1: ['權益11', '權益22'],
-        btn2: ['優惠眷11', '優惠眷12', '優惠眷12', '優惠眷12'],
-        desc: "康寶藍真的很好喝，我還是第一次喝，就在這家亞洲50大好喝的咖啡廳喝到，真的很幸運，一點也沒有濃縮咖啡的苦味，也沒有鮮奶油的甜膩，一切配合得恰到好處，台灣真的很棒，很多一直朝著自己目標努力的人，一直被看見，包含這家咖啡店，對老闆有興趣的可以自己去谷歌，有些創業史介紹！推薦給大家，讓好店一直好下去～ 也可以讓我們一直可以大聲的說，我在喝咖啡或是在前往咖啡店的路上，享受著美好咖啡"
-    },
-    {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "網美咖啡館",
-        imgs: ['', '', '', '', '', '', '', '', ''],
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeMAY3Z-205kWN7XF5u2F8GdNrSs6-RvcMOw&usqp=CAU',
-        collapsed: false,
-        btn1: ['權益111', '權益222'],
-        btn2: ['優惠眷111', '優惠眷222', '優惠眷222'],
-        desc: "康寶藍真的很好喝，我還是第一次喝，就在這家亞洲50大好喝的咖啡廳喝到，真的很幸運，一點也沒有濃縮咖啡的苦味，也沒有鮮奶油的甜膩，一切配合得恰到好處，台灣真的很棒，很多一直朝著自己目標努力的人，一直被看見，包含這家咖啡店，對老闆有興趣的可以自己去谷歌，有些創業史介紹！推薦給大家，讓好店一直好下去～ 也可以讓我們一直可以大聲的說，我在喝咖啡或是在前往咖啡店的路上，享受著美好咖啡"
-    }
-];
+GetReward()
+const Reward_DATA = Reward_Data
+let cgid = ''
+
+//Alert.alert("Reward", JSON.stringify(Reward_DATA))
 
 function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
 
@@ -55,8 +32,20 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
 
     const clickBtn1 = ({ item }) => {
         setshowDialog1(true)
-    };
 
+    };
+    temp = 0;
+
+    data.rights.map((d, i) => {
+        temp = i
+    })
+    if (temp === 0) {
+        temp += 0.8
+    }
+    if (temp === 1) {
+        temp += 0.8
+    }
+    temp = (1071 / ((temp + 1) * (300 + (4 - temp) * 12)))
     return (
         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', width: '96%' }}>
             {/* 水豚圖 */}
@@ -77,19 +66,21 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
             {/* absolute文字標題背景 */}
             {!coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />}
             {coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/nonbutton.png')} />}
-
             {/* 下半摺疊選單 */}
-            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: 1071 / 789, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: 0 }}>
+            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
-                <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: 0 }}>
+                <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
 
-                    {data.btn1.map((d, i) => {
+                    {data.rights.map((inf) => {
                         return (
-                            <TouchableOpacity onPress={clickBtn1} style={{ width: '85%', aspectRatio: 861 / 138 }}>
-                                <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={styles.text}>{d}</Text>
-                                </ImageBackground>
-                            </TouchableOpacity>
+                            <>
+                                <TouchableOpacity onPress={clickBtn1} style={{ width: '85%', aspectRatio: 861 / 138 }}>
+                                    <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={styles.text}>{inf.rights.name}</Text>
+                                    </ImageBackground>
+                                </TouchableOpacity>
+                                <View style={{ height: 20 }}></View>
+                            </>
                         )
                     })}
 
@@ -108,7 +99,10 @@ function CollapsibleItem2({ navigation, collapsed, data, setshowDialog2 }) {
 
     const [coll, setCollapsed] = React.useState(collapsed);
     const [collHeaderH, setCollHeaderH] = React.useState(null);
-
+    const clickbtn1 = (b) => {
+        console.log(b)
+        setshowDialog2(true)
+    }
     _renderItem = ({ item, index }) => {
         return (
             <View style={styles.slide}>
@@ -127,16 +121,21 @@ function CollapsibleItem2({ navigation, collapsed, data, setshowDialog2 }) {
         setCollapsed(!coll)
     };
 
-    const clickBtn1 = ({ }) => {
+    const clickBtn1 = (innerData) => {
         setshowDialog2(true)
+        cgid = innerData.id
     };
     temp = 0;
-    data.btn2.map((d, i) => {
+    data.coupons.map((d, i) => {
         temp = i
     })
-    console.log(temp)
+    if (temp === 0) {
+        temp += 0.8
+    }
+    if (temp === 1) {
+        temp += 0.8
+    }
     temp = (1071 / ((temp + 1) * (300 + (4 - temp) * 12)))
-
     return (
         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', width: '96%' }}>
             {/* 水豚圖 */}
@@ -155,22 +154,21 @@ function CollapsibleItem2({ navigation, collapsed, data, setshowDialog2 }) {
                 </TouchableOpacity>
             </View>
             {/* absolute文字標題背景 */}
-            <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />
+            {!coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />}
+            {coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/nonbutton.png')} />}
 
             {/* 下半摺疊選單 */}
 
             <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
                 <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
-                    <View style={{ height: 20 }}></View>
-
                     {
-                        data.btn2.map((d, i) => {
+                        data.coupons.map((inf) => {
                             return (
                                 <>
-                                    <TouchableOpacity onPress={clickBtn1} style={{ width: '85%', aspectRatio: 861 / 138 }}>
+                                    <TouchableOpacity onPress={() => clickBtn1(inf)} style={{ width: '85%', aspectRatio: 861 / 138 }}>
                                         <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                            <Text style={styles.text}>{d}</Text>
+                                            <Text style={styles.text}>{inf.coupon.name + " - 剩餘 :  " + inf.quantity + "次"}</Text>
                                         </ImageBackground>
                                     </TouchableOpacity>
                                     <View style={{ height: 20 }}></View>
@@ -200,6 +198,8 @@ export default function FeedV2({ navigation }) {
     const [showDialog1, setshowDialog1] = React.useState(false);
     const [showDialog2, setshowDialog2] = React.useState(false);
 
+    //Alert.alert("Reward", JSON.stringify(Reward_DATA))
+
     // variables
     const snapPoints = React.useMemo(() => ['50%', '75%', '90%'], []);
 
@@ -208,7 +208,7 @@ export default function FeedV2({ navigation }) {
         console.log('handleSheetChanges', index);
     }, []);
 
-    const [checked, setChecked] = React.useState(false);
+    const [checked, setChecked] = React.useState();
 
     // _renderItem = ({ item, index }) => {
     //     return (
@@ -220,11 +220,26 @@ export default function FeedV2({ navigation }) {
 
     // const renderListItem = ({ item }) => (
     //     <Item bottomSheetRefCoupon={bottomSheetRefCoupon} bottomSheetRef={bottomSheetRef} navigation={navigation} item={item} title={item.title} />
-    // );    
+    // );
+    const clickBtnCG = () => {
+        RewardRedemption(cgid)
+        GetReward()
+        wait(200).then(() => {
+            setshowDialog2(false)
+        })
+
+    };
+    const [refreshing, setRefreshing] = React.useState(false);
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        GetReward()
+        wait(1500).then(() => setRefreshing(false));
+    }, []);
     return (
         <SafeAreaView style={styles.container}>
-
-            <ScrollView style={{ width: '100%', height: '100%', marginBottom: 70 }}>
+            <ScrollView
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                style={{ width: '100%', height: '100%', marginBottom: 70 }}>
                 <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                     <View style={{ height: 16 }}></View>
                     <Image style={{ zIndex: 2, resizeMode: 'stretch', width: '84%', flex: 1, height: undefined, aspectRatio: 1016 / 188 }} source={require('./assets/logo.png')} />
@@ -250,22 +265,22 @@ export default function FeedV2({ navigation }) {
                             bottom: 0,
                             right: 0,
                         }}>
-                        {DATA.map((inf) => {
+                        {Reward_Data.map((inf) => {
                             return (
+
                                 <View style={styles.swiper_view}>
-                                    <TouchableOpacity onPress={() => { }}>
-                                        <Image style={{ resizeMode: 'cover', aspectRatio: 1 / 1, width: '100%', height: undefined, borderRadius: 16 }} source={{ uri: inf.img }} />
-                                    </TouchableOpacity >
+                                    <Image style={{ resizeMode: 'cover', aspectRatio: 1 / 1, width: '100%', height: undefined, borderRadius: 16 }} source={{ uri: inf.skin.img ? inf.skin.img.replace('https', 'http') : 'http://media-cdn.tripadvisor.com/media/photo-s/17/f5/39/f7/fooood-at-the-food-department.jpg' }} />
                                 </View>
                             )
                         })}
                     </ScrollView>
 
-                    <CollapsibleItem setshowDialog1={setshowDialog1} data={DATA[ScrollIndex]} />
+                    {Reward_Data && <CollapsibleItem setshowDialog1={setshowDialog1} data={Reward_Data ? Reward_Data[ScrollIndex] : null} />}
                     <View style={{ height: 30 }}></View>
-                    <CollapsibleItem2 setshowDialog2={setshowDialog2} data={DATA[ScrollIndex]} />
+                    {Reward_Data && <CollapsibleItem2 setshowDialog2={setshowDialog2} data={Reward_Data ? Reward_Data[ScrollIndex] : null} />}
                     <Image style={{ zIndex: 1, position: 'absolute', left: 0, top: 40, resizeMode: 'stretch', width: '39%', height: undefined, aspectRatio: 470 / 334 }} source={require('./assets/leaf_left.png')} />
                     <Image style={{ zIndex: 1, position: 'absolute', right: 0, top: ScrollViewH - 10, resizeMode: 'stretch', width: '39%', height: undefined, aspectRatio: 475 / 300 }} source={require('./assets/leaf_right.png')} />
+
                 </View>
             </ScrollView>
 
@@ -297,7 +312,7 @@ export default function FeedV2({ navigation }) {
                             <View style={{ height: 16 }}></View>
                             <TouchableOpacity style={{ width: '85%', aspectRatio: 861 / 138 }} onPress={() => { setshowDialog1(false) }}>
                                 <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={styles.text}>USE it</Text>
+                                    <Text style={styles.text}>關閉</Text>
                                 </ImageBackground>
                             </TouchableOpacity>
                         </View>
@@ -329,7 +344,7 @@ export default function FeedV2({ navigation }) {
                                     </ImageBackground>
                                 </TouchableOpacity>
                                 <View style={{ width: 16 }}></View>
-                                <TouchableOpacity style={{ flex: 1, aspectRatio: 516 / 138 }} onPress={() => { setshowDialog2(false) }}>
+                                <TouchableOpacity style={{ flex: 1, aspectRatio: 516 / 138 }} onPress={() => { clickBtnCG() }}>
                                     <ImageBackground source={require('./assets/btn3.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={styles.text}>YES</Text>
                                     </ImageBackground>

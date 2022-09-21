@@ -2,7 +2,7 @@
   "expo": {
     "name": "FoodieVerse",
     "slug": "FoodieVerse",
-    "version": "1.6.6",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.demiverse.io.foodieverse",
-      "buildNumber": "5"
+      "buildNumber": "18"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +28,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.demiverse.io.foodieverse",
-      "versionCode": 5
+      "versionCode": 18
     },
     "web": {
       "favicon": "./assets/favicon.png"

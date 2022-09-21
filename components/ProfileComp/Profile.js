@@ -7,14 +7,15 @@ import { Divider } from 'react-native-paper';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { userName } from '../auth/Landing';
 import { AsyncStorage } from 'react-native';
+import { _userName_, _picture_ } from '../auth/Landing';
 
 const { width } = Dimensions.get('window');
 
 export default function Profile(props) {
     clickSetting = () => {
         Alert.alert(
-            "您正在登出",
-            "請確認是否登出?",
+            "您正在退出",
+            "請確認是否繼續?",
             [
                 {
                     text: "確認", onPress: () => {
@@ -61,7 +62,7 @@ export default function Profile(props) {
             await AsyncStorage.clear()
             props.doLout(true)
         } catch (e) {
-            alert(`cleaning error ${e}`)
+            alert(`error ${e}`)
         }
     };
 
@@ -70,10 +71,10 @@ export default function Profile(props) {
             <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                 <View style={{ width: '100%', alignItems: 'center', paddingTop: 16 }}>
                     <TouchableOpacity style={{ width: window.width * 0.4, height: undefined, aspectRatio: 1 / 1, backgroundColor: '#F48037', borderRadius: window.width * 0.4 / 2, padding: 4 }} onPress={() => { }}>
-                        <ImageBackground source={{ uri: props.picture }} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: window.width * 0.4 / 2, overflow: 'hidden' }}>
+                        <ImageBackground source={{ uri: _picture_ }} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: window.width * 0.4 / 2, overflow: 'hidden' }}>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{userName}</Text>
+                    <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{_userName_}</Text>
 
                     <TouchableOpacity onPress={() => { clickSetting() }} style={{ position: 'absolute', right: 4, top: 0, width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
                         <Image style={{ width: 32, height: 32 }} source={require('./assets/icon_setting.png')} />
@@ -107,7 +108,7 @@ function FirstRoute({ navigation }) {
                 }}
                 style={{ aspectRatio: 1 / 1, width: '100%', height: undefined, marginTop: 8 }}
                 // ref={scrollView}
-                pagingEnabled={true}
+                pagingEnabled={false}
                 horizontal={true}
                 contentInset={{
                     top: 0,
@@ -115,6 +116,7 @@ function FirstRoute({ navigation }) {
                     bottom: 0,
                     right: 0,
                 }}>
+
                 {[1, 2, 3, 3, 3, 3, 3].map((answer, i) => {
                     return (
                         <View style={[styles.swiper_view, { width: width }]}>
@@ -138,6 +140,7 @@ const renderScene = SceneMap({
     second: FirstRoute,
     t3: SecondRoute,
 });
+
 
 
 
