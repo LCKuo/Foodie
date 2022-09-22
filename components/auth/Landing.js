@@ -3,74 +3,33 @@ import { Image, Text, View, StyleSheet, ImageBackground, TouchableOpacity } from
 import * as WebBrowser from 'expo-web-browser';
 import image from "../main/pngs/login.png";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+
+import Waiting from './Waiting'
+import Regist from './Regist'
+import LandR from './LandR';
+import LoginPage from './LoginPage'
 
 WebBrowser.maybeCompleteAuthSession();
 export var _userName_ = "FoodieVerse";
 export var _picture_ = "http://foodieverse.s3.s3.amazonaws.com/static/512x512.png";
+const Stack = createStackNavigator();
 
-export default function Landing(props) {
+export default function Landing() {
     return (
-        <SafeAreaView style={stylesV.container}>
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName="LandR">
+                    <Stack.Screen name="Regist" component={Regist} options={{ headerShown: true }} />
+                    <Stack.Screen name="LandR" component={LandR} options={{ headerShown: true }} />
+                    <Stack.Screen name="Waiting" component={Waiting} options={{ headerShown: true }} />
+                    <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: true }} />
 
-            <View style={stylesV.container}>
-                <Image style={{ position: 'absolute', resizeMode: 'stretch', width: '100%', height: '100%', top: '0%', left: '0%', }} source={image} />
-
-                <TouchableOpacity style={{ width: '85%', aspectRatio: 861 / 138, top: '22%' }} onPress={() => { props.doLin() }}>
-                    <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={stylesV.text}>開始使用</Text>
-                    </ImageBackground>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView >
-
+                </Stack.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    image: {
-        flex: 1,
-        justifyContent: "center"
-    },
-    text: {
-        color: "white",
-        fontSize: 42,
-        lineHeight: 84,
-        fontWeight: "bold",
-        textAlign: "center",
-        backgroundColor: "#000000c0"
-    }
-});
-
-const stylesV = StyleSheet.create({
-    image: {
-        width: 28,
-        height: 28,
-        resizeMode: 'stretch'
-    },
-    container: {
-        flex: 1,
-        alignSelf: 'stretch',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5F5F5',
-    },
-    screen: {
-        position: 'absolute',
-        height: '100%',
-        width: '100%',
-        top: 0,
-        left: 0,
-    },
-    image: {
-        flex: 1,
-        justifyContent: "center"
-    },
-    text: {
-        color: "white",
-        fontSize: 28,
-        fontWeight: "bold",
-    }
-});

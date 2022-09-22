@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Nav } from "./auth/Waiting";
 const base_url = 'http://35.79.34.159/'
 const base_secret = 'Xx4JK5lIZiLLb2X'
 const base_Invitationcode = 'ruzf7wzRWwb8BUz'
+
+export let isLogin = false;
+export const _setLogin = () => {
+  isLogin = true;
+}
 
 export let data = {
   reward_id: null,
@@ -107,13 +113,12 @@ export const login = (username, id) => {
       if (login.key != null) {
         data.User_Token = login.key
         restoreToken()
+        GetReward()
+        Nav()
         //Alert.alert("登入成功",data.User_Token);             
       } else {
-        Alert.alert("需註冊", data.User_Token);
-        let invitation = ""
-        Registration(username, id, username, invitation)
+        alert(JSON.stringify(login))
       }
-
     })
     .catch(error => { Alert.alert("error", JSON.stringify(error)); });
 }
@@ -249,7 +254,6 @@ export const GetReward = async () => {
     .then(response => response.text())
     .then(result => {
       Reward_Data = JSON.parse(result)
-      //Alert.alert("rewards OK", JSON.stringify(Reward_Data));  
     })
     .catch(error => { Alert.alert("rewards error", JSON.stringify(error)); });
 }
@@ -270,7 +274,7 @@ export let Reward_Data = [
         "id": 5,
         "coupon": {
           "id": "ac4846e7-ebe7-4072-baf8-78410f189064",
-          "name": "口福壽司 - 豆皮壽司一份",
+          "name": "賈甲假賈甲口福壽司 - 豆皮壽司一份",
           "description": "口福壽司 - 豆皮壽司一份",
           "duration": 365
         },

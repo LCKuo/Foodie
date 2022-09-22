@@ -1,9 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import { Component, React } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LandingScreen from './components/auth/Landing';
 import MainScreen from './components/Main';
 import ScanScreen from './components/main/Scan';
 import 'react-native-gesture-handler';
@@ -11,11 +9,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Search from './components/SearchComps/Search';
 import SearchLevel2 from './components/SearchComps/SearchLevel2';
 import SearchLevel3 from './components/SearchComps/SearchLevel3';
+import { isLogin } from './components/lib';
 
-import Feed from './components/FeedComps/Feed';
-import FeedLevel2 from './components/FeedComps/FeedLevel2';
-
-import Main from './components/Main';
+import Waiting from './components/auth/Waiting'
+import Regist from './components/auth/Regist'
+import LandR from './components/auth/LandR';
+import LoginPage from './components/auth/LoginPage'
 
 const Stack = createStackNavigator();
 export class App extends Component {
@@ -55,17 +54,6 @@ export class App extends Component {
     this.checkLogin();
   }
 
-  doLin = () => {
-    this.getInfo()
-  }
-
-  doLout = (bool) => {
-    if (bool) {
-      this.setState({
-        loggedIn: false
-      })
-    }
-  }
   doLoading = () => {
     this.setState({ loaded: false })
   }
@@ -87,18 +75,7 @@ export class App extends Component {
     }
   }
 
-  Combine = () => {
-    return (
-      <>
-        <MainScreen
-          doLout={this.doLout}
-          name={this.state.name}
-          picture={this.state.picture}
-          email={this.state.email}
-        />
-      </>
-    );
-  }
+
   render() {
 
     if (!this.state.loaded) {
@@ -109,29 +86,24 @@ export class App extends Component {
       )
     }
 
-    if (!this.state.loggedIn) {
-      return (
-        <LandingScreen doLin={this.doLin} doLout={this.doLout} doLoading={this.doLoading} />
-      )
-    } else {
-      return (
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen
-              name="Main"
-              component={this.Combine}
-              options={{ headerShown: false }}
-              initialParams={{ doLout: this.doLout }}
-            />
-            <Stack.Screen name="Add" component={ScanScreen} />
-            <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
-            <Stack.Screen name="SearchLevel2" component={SearchLevel2} options={{ headerShown: false }} />
-            <Stack.Screen name="SearchLevel3" component={SearchLevel3} options={{ headerShown: false }} />
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="LandR">
+          <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Add" component={ScanScreen} />
+          <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
+          <Stack.Screen name="SearchLevel2" component={SearchLevel2} options={{ headerShown: false }} />
+          <Stack.Screen name="SearchLevel3" component={SearchLevel3} options={{ headerShown: false }} />
 
-          </Stack.Navigator>
-        </NavigationContainer>
-      )
-    }
+          <Stack.Screen name="Regist" component={Regist} options={{ headerShown: false }} />
+          <Stack.Screen name="LandR" component={LandR} options={{ headerShown: false }} />
+          <Stack.Screen name="Waiting" component={Waiting} options={{ headerShown: false }} />
+          <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }} />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+
 
 
   }

@@ -13,19 +13,6 @@ export default function Main(props, navigation) {
     const EmptyScreen = () => {
         return null;
     }
-    Combine = () => {
-        return (
-            <>
-                <ProfileScreen
-                    doLout={props.doLout}
-                    name={props.name ? props.name : "Default user"}
-                    picture={props.picture ? props.picture : "http://image.uc.cn/s/wemedia/s/upload/2021/0a9c2211bc7d49468c41e23207d766db.png"}
-                    email={props.email}
-                    navigation={navigation}
-                />
-            </>
-        );
-    }
     const [tabIndex, setTabIndex] = React.useState(0);
 
     if (Platform.OS === 'ios') {
@@ -122,11 +109,34 @@ export default function Main(props, navigation) {
                             )
                         }
                     }} />
-
+                <Tab.Screen name="Market" component={Market}
+                    listeners={{
+                        tabPress: e => {
+                            //e.preventDefault()
+                            setTabIndex(4);
+                        },
+                    }}
+                    options={{
+                        tabBarLabel: 'Market',
+                        tabBarIcon: ({ focused, color, size }) => {
+                            return (
+                                <View>
+                                    {tabIndex == 4 &&
+                                        <View style={{ backgroundColor: '#FDEDFA', borderRadius: 20, width: 40, height: 40, marginTop: -7, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                                            <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
+                                        </View>
+                                    }
+                                    {tabIndex != 4 &&
+                                        <Image tintColor='#2d3436' style={[styles.image, { tintColor: "#2d3436" }]} source={require('../assets/tab4.png')} />
+                                    }
+                                </View>
+                            )
+                        }
+                    }} />
 
                 <Tab.Screen
                     name="Profile"
-                    component={Combine}
+                    component={ProfileScreen}
                     listeners={{
                         tabPress: e => {
                             //e.preventDefault()
@@ -273,7 +283,7 @@ export default function Main(props, navigation) {
                     }} />
                 <Tab.Screen
                     name="Profile"
-                    component={Combine}
+                    component={ProfileScreen}
                     listeners={{
                         tabPress: e => {
                             //e.preventDefault()

@@ -11,7 +11,7 @@ import { _userName_, _picture_ } from '../auth/Landing';
 
 const { width } = Dimensions.get('window');
 
-export default function Profile(props) {
+export default function Profile({ navigation }) {
     clickSetting = () => {
         Alert.alert(
             "您正在退出",
@@ -60,10 +60,10 @@ export default function Profile(props) {
     const clearState = async () => {
         try {
             await AsyncStorage.clear()
-            props.doLout(true)
         } catch (e) {
-            alert(`error ${e}`)
+
         }
+        navigation.navigate('LandR', {})
     };
 
     return (

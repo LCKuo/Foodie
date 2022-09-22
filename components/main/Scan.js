@@ -25,35 +25,18 @@ export default function Scan() {
     };
 
     const createTwoButtonAlert = (type, data) => {
-
-        if (data.length > 17) {
-            Alert.alert(
-                `您已切換`,
-                `請點擊確認`,
-                [
-                    {
-                        text: "OK", onPress: () => {
-                            _setToken(data)
-                            setScanned(true)
-                        }
+        Alert.alert(
+            `您已兌換`,
+            `請點擊確認`,
+            [
+                {
+                    text: "確認", onPress: () => {
+                        reward(data)
+                        setScanned(true)
                     }
-                ]
-            );
-        } else {
-            Alert.alert(
-                `您已兌換`,
-                `請點擊確認`,
-                [
-                    {
-                        text: "OK", onPress: () => {
-                            reward(data)
-                            setScanned(true)
-                        }
-                    }
-                ]
-            );
-
-        }
+                }
+            ]
+        );
     }
 
 
