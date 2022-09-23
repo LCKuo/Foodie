@@ -1,4 +1,3 @@
-import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 const Tab = createMaterialBottomTabNavigator();
 import ProfileScreen from './ProfileComp/Profile';
@@ -6,14 +5,23 @@ import Market from './main/Market';
 import Search from './SearchComps/Search';
 import FeedV2 from './FeedComps/FeedV2';
 import Scan from './main/Scan';
-import { View, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, StyleSheet, Button, Text } from 'react-native';
 import { Platform } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+import Constants from 'expo-constants';
 
 export default function Main(props, navigation) {
     const EmptyScreen = () => {
         return null;
     }
     const [tabIndex, setTabIndex] = React.useState(0);
+    const [result, setResult] = useState(null);
+
+    const _handlePressButtonAsync = async () => {
+        let result = await WebBrowser.openBrowserAsync('https://foodieverse.com.tw/');
+        setResult(result);
+    };
 
     if (Platform.OS === 'ios') {
         return (
@@ -114,6 +122,7 @@ export default function Main(props, navigation) {
                         tabPress: e => {
                             //e.preventDefault()
                             setTabIndex(4);
+                            _handlePressButtonAsync()
                         },
                     }}
                     options={{
@@ -262,6 +271,7 @@ export default function Main(props, navigation) {
                         tabPress: e => {
                             //e.preventDefault()
                             setTabIndex(4);
+                            _handlePressButtonAsync()
                         },
                     }}
                     options={{

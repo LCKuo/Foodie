@@ -2,20 +2,20 @@ import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { Registration } from '../lib';
+
 export default function Regist({ navigation }) {
-
-    const [ID, setID] = React.useState('');
-    const [Pw, setPw] = React.useState('');
-    const [Pw2, setPw2] = React.useState('');
-    const [emaim, setEmaim] = React.useState('');
-    const [invite, setInvite] = React.useState('');
-
+    let _id = ""
+    let _pw = ""
+    let _pw2 = ""
+    let _email = ""
+    let _invite = ""
     const submit = () => {
-        if (ID && Pw && Pw2 && emaim) {
-            if (emaim.Email.includes("@")) {
-                if (Pw === Pw2) {
-                    Registration(ID, Pw, emaim, invite)
-                    navigation.navigate('Waiting', { ID: ID, Pw: Pw })
+        if (_id && _pw && _pw2 && _email) {
+            if (_email.includes("@")) {
+                if (_pw === _pw2) {
+                    Registration(_id, _pw, _email, _invite)
+                    navigation.navigate('Waiting', { ID: _id, Pw: _pw })
+
                 } else {
                     alert('請確認密碼一致!')
                 }
@@ -24,10 +24,10 @@ export default function Regist({ navigation }) {
             }
         } else {
             let log = ""
-            log += ID === "" ? "請輸入名稱\n" : ""
-            log += Pw === "" ? "請輸入Pw1\n" : ""
-            log += Pw2 === "" ? "請輸入Pw2\n" : ""
-            log += emaim === "" ? "請輸入Email\n" : ""
+            log += _id === "" ? "請輸入名稱\n" : ""
+            log += _pw === "" ? "請輸入Pw1\n" : ""
+            log += _pw2 === "" ? "請輸入Pw2\n" : ""
+            log += _email === "" ? "請輸入Email\n" : ""
             alert(log)
         }
     }
@@ -39,7 +39,7 @@ export default function Regist({ navigation }) {
                 <Text style={{ fontSize: 30 }}>REGISTER</Text>
 
                 <TextInput
-                    onChangeText={Name => setID(Name)}
+                    onChangeText={Name => { _id = Name }}
                     placeholder="Name"
                     style={{
                         backgroundColor: '#efefef',
@@ -50,7 +50,7 @@ export default function Regist({ navigation }) {
                     }}
                 />
                 <TextInput
-                    onChangeText={Email => setEmaim({ Email })}
+                    onChangeText={Email => { _email = Email }}
                     placeholder="Email"
                     style={{
                         backgroundColor: '#efefef',
@@ -62,7 +62,7 @@ export default function Regist({ navigation }) {
                 />
 
                 <TextInput
-                    onChangeText={Password1 => setPw(Password1)}
+                    onChangeText={Password1 => { _pw = Password1 }}
                     placeholder="Password"
                     secureTextEntry={true}
                     style={{
@@ -74,7 +74,7 @@ export default function Regist({ navigation }) {
                     }}
                 />
                 <TextInput
-                    onChangeText={Password2 => setPw2(Password2)}
+                    onChangeText={Password2 => { _pw2 = Password2 }}
                     placeholder="Confirm Password"
                     secureTextEntry={true}
                     style={{
@@ -87,7 +87,7 @@ export default function Regist({ navigation }) {
                 />
 
                 <TextInput
-                    onChangeText={Invite => setInvite({ Invite })}
+                    onChangeText={Invite => { _invite = Invite }}
                     placeholder="Invite code"
                     style={{
                         backgroundColor: '#efefef',

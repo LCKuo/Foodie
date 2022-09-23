@@ -5131,7 +5131,7 @@
     "wrap-ansi" "^7.0.0"
     "xdl" "59.2.52"
 
-"expo-constants@~13.2.0", "expo-constants@~13.2.2", "expo-constants@~13.2.4":
+"expo-constants@^13.2.4", "expo-constants@~13.2.0", "expo-constants@~13.2.2", "expo-constants@~13.2.4":
   "integrity" "sha512-Zobau8EuTk2GgafwkfGnWM6CmSLB7X8qnQXVuXe0nd3v92hfQUmRWGhJwH88uxXj3LrfqctM6PaJ8taG1vxfBw=="
   "resolved" "https://registry.npmjs.org/expo-constants/-/expo-constants-13.2.4.tgz"
   "version" "13.2.4"

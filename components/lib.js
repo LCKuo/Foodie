@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Nav } from "./auth/Waiting";
 const base_url = 'http://35.79.34.159/'
 const base_secret = 'Xx4JK5lIZiLLb2X'
 const base_Invitationcode = 'ruzf7wzRWwb8BUz'
@@ -13,7 +12,7 @@ export const _setLogin = () => {
 
 export let data = {
   reward_id: null,
-  User_Token: 'e9b07b3da251c02302185a4f2bb87636189ac6ee',
+  User_Token: '',
 };
 
 export let Profile_data = {
@@ -79,11 +78,12 @@ export const Registration = (username, id, email, invitation) => {
   fetch(`${base_url}/auth/registration/register/`, requestOptions)
     .then(response => response.text())
     .then(response => {
+      console.log(response)
       let login = JSON.parse(response);
       if (login.email != null || login.non_field_errors != null || login.username != null) {
         Alert.alert("Registration Error", JSON.stringify(login))
       } else {
-        login(username, id)
+        alert("請前往認證信箱!")
       }
     })
     .catch(error => { Alert.alert("error", JSON.stringify(error)); });
@@ -109,15 +109,14 @@ export const login = (username, id) => {
   fetch(`${base_url}auth/login/`, requestOptions)
     .then(response => response.text())
     .then(result => {
+      console.log(result)
       let login = JSON.parse(result);
       if (login.key != null) {
         data.User_Token = login.key
-        restoreToken()
         GetReward()
-        Nav()
-        //Alert.alert("登入成功",data.User_Token);             
+        restoreToken()
       } else {
-        alert(JSON.stringify(login))
+        alert("請完成Email認證!")
       }
     })
     .catch(error => { Alert.alert("error", JSON.stringify(error)); });
@@ -140,6 +139,7 @@ export const getProflie = () => {
   fetch(`${base_url}auth/profile/`, requestOptions)
     .then(response => response.text())
     .then(result => {
+      console.log(result)
       let Profile = JSON.parse(result);
       Profile_data.Username = Profile.data.username
       Profile_data.avatar = Profile.data.avatar
@@ -253,6 +253,7 @@ export const GetReward = async () => {
   fetch(`${base_url}/reward/rewards/`, requestOptions)
     .then(response => response.text())
     .then(result => {
+      console.log(result)
       Reward_Data = JSON.parse(result)
     })
     .catch(error => { Alert.alert("rewards error", JSON.stringify(error)); });

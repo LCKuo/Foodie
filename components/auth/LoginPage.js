@@ -3,15 +3,15 @@ import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } 
 
 export default function LoginPage({ navigation }) {
 
-    const [ID, setID] = React.useState('');
-    const [Pw, setPw] = React.useState('');
+    let _id = ""
+    let _pw = ""
 
     const submit = () => {
-        if (ID && Pw) {
+        if (_id && _pw) {
         } else {
             alert('請輸入帳號 和 密碼!')
         }
-        navigation.navigate('Waiting', { ID: ID, Pw: Pw })
+        navigation.navigate('Waiting', { ID: _id, Pw: _pw })
     };
     return (
 
@@ -21,7 +21,7 @@ export default function LoginPage({ navigation }) {
                 <Text style={{ fontSize: 30 }}>REGISTER</Text>
 
                 <TextInput
-                    onChangeText={Name => setID({ Name })}
+                    onChangeText={Name => { _id = Name }}
                     placeholder="Name"
                     style={{
                         backgroundColor: '#efefef',
@@ -32,7 +32,7 @@ export default function LoginPage({ navigation }) {
                     }}
                 />
                 <TextInput
-                    onChangeText={Password => setPw({ Password })}
+                    onChangeText={Password1 => { _pw = Password1 }}
                     placeholder="Password"
                     secureTextEntry={true}
                     style={{

@@ -2,16 +2,19 @@ import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 import { _setLogin, isLogin } from '../lib';
 import { login, data } from '../lib';
-
-export function Nav({ navigation }) {
-    navigation.navigate('Main', {})
-}
+const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+};
 export default function Waiting({ navigation, route }) {
 
     const submit = () => {
         if (data.User_Token) {
-            navigation.navigate('Main', {})
+            wait(1000).then(() => {
+                if (data.User_Token)
+                    navigation.navigate('Main', {})
+            })
         }
+        alert(route.params.ID + " " + route.params.Pw)
         login(route.params.ID, route.params.Pw)
     };
     return (
