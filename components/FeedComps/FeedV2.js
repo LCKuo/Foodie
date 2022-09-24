@@ -34,7 +34,6 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
 
     };
     temp = 0;
-
     data.rights.map((d, i) => {
         temp = i
     })
@@ -46,7 +45,7 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
     }
     temp = (1071 / ((temp + 1) * (300 + (4 - temp) * 12)))
     return (
-        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', width: '96%' }}>
+        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', width: '96%', marginBottom: 0 }}>
             {/* 水豚圖 */}
             <Image style={{ zIndex: 3, resizeMode: 'stretch', width: 142, height: undefined, aspectRatio: 1 / 1, marginLeft: 8 }} source={require('./assets/coll1.png')} />
             {/* absolute文字標題 */}
@@ -66,7 +65,7 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
             {!coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />}
             {coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/nonbutton.png')} />}
             {/* 下半摺疊選單 */}
-            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
+            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3' }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
                 <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
 
@@ -279,6 +278,7 @@ export default function FeedV2({ navigation }) {
                     {Reward_Data && <CollapsibleItem2 setshowDialog2={setshowDialog2} data={Reward_Data ? Reward_Data[ScrollIndex] : null} />}
                     <Image style={{ zIndex: 1, position: 'absolute', left: 0, top: 40, resizeMode: 'stretch', width: '39%', height: undefined, aspectRatio: 470 / 334 }} source={require('./assets/leaf_left.png')} />
                     <Image style={{ zIndex: 1, position: 'absolute', right: 0, top: ScrollViewH - 10, resizeMode: 'stretch', width: '39%', height: undefined, aspectRatio: 475 / 300 }} source={require('./assets/leaf_right.png')} />
+                    <View style={{ height: 50 }}></View>
 
                 </View>
             </ScrollView>
@@ -368,7 +368,6 @@ const styles = StyleSheet.create({
         zIndex: 999
     },
     container: {
-        flex: 1,
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',

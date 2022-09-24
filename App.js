@@ -15,6 +15,7 @@ import Waiting from './components/auth/Waiting'
 import Regist from './components/auth/Regist'
 import LandR from './components/auth/LandR';
 import LoginPage from './components/auth/LoginPage'
+import ForgetPassWord from './components/auth/ForgetPassWord';
 
 const Stack = createStackNavigator();
 export class App extends Component {
@@ -99,6 +100,7 @@ export class App extends Component {
           <Stack.Screen name="LandR" component={LandR} options={{ headerShown: false }} />
           <Stack.Screen name="Waiting" component={Waiting} options={{ headerShown: false }} />
           <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }} />
+          <Stack.Screen name="ForgetPassWord" component={ForgetPassWord} options={{ headerShown: false }} />
 
         </Stack.Navigator>
       </NavigationContainer>

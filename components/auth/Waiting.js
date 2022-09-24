@@ -20,27 +20,9 @@ export default function Waiting({ navigation, route }) {
         }
     };
     return (
-        <ImageBackground source={require('./assets/bg2.png')} style={{ flex: 1, justifyContent: 'center' }}>
+        <ImageBackground source={require('./assets/emailConfirmation.png')} style={{ flex: 1, justifyContent: 'center' }}>
             <View style={styles.container}>
-                <Text style={{ fontSize: 30 }}>等待認證信</Text>
-                <TouchableOpacity
-                    activeOpacity={0.5}
-                    onPress={submit}
-                    style={{ width: '100%' }}>
-                    <View
-                        style={{
-                            backgroundColor: 'red',
-                            padding: 14,
-                            marginTop: 10,
-                            width: '50%',
-                            marginLeft: '5%',
-                            alignSelf: 'center'
-                        }}>
-                        <Text style={{ textAlign: 'center', color: '#fff', fontSize: 18 }}>
-                            驗證
-                        </Text>
-                    </View>
-                </TouchableOpacity>
+                <Text style={{ fontSize: 30 }}></Text>
             </View>
         </ImageBackground>
     );

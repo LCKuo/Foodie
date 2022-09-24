@@ -26,30 +26,30 @@ export default function Regist({ navigation }) {
     return (
 
         <ImageBackground source={require('./assets/bg2.png')} style={{ flex: 1, justifyContent: 'center' }}>
-
             <View style={styles.container}>
-                <Text style={{ fontSize: 30 }}>REGISTER</Text>
-
+                <Text style={{ fontSize: 10 }}> </Text>
                 <TextInput
                     onChangeText={Name => { _id = Name }}
                     placeholder="Name"
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
                 <TextInput
                     onChangeText={Email => { _email = Email }}
                     placeholder="Email"
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
 
@@ -58,11 +58,12 @@ export default function Regist({ navigation }) {
                     placeholder="Password"
                     secureTextEntry={true}
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
                 <TextInput
@@ -70,11 +71,12 @@ export default function Regist({ navigation }) {
                     placeholder="Confirm Password"
                     secureTextEntry={true}
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
 
@@ -82,37 +84,29 @@ export default function Regist({ navigation }) {
                     onChangeText={Invite => { _invite = Invite }}
                     placeholder="Invite code"
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
 
                 <TouchableOpacity
                     activeOpacity={0.5}
                     onPress={submit}
-                    style={{ width: '100%' }}>
-                    <View
-                        style={{
-                            backgroundColor: 'red',
-                            padding: 14,
-                            marginTop: 10,
-                            width: '50%',
-                            marginLeft: '5%',
-                            alignSelf: 'center'
-                        }}>
-                        <Text style={{ textAlign: 'center', color: '#fff', fontSize: 18 }}>
-                            REGISTER
-                        </Text>
-                    </View>
-                    <View style={{ height: 300 }}></View>
+                    style={{ width: '75%', aspectRatio: 861 / 138, top: '2%' }}>
+                    <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={styles.text}>註冊</Text>
+                    </ImageBackground>
                 </TouchableOpacity>
-                <Text style={{ textAlign: 'center', color: '#fff', fontSize: 18 }}>
-                    already a user ?  </Text>
+
+                <View style={{ height: 300 }}></View>
+                <Text style={{ textAlign: 'center', color: 'gray', fontSize: 14 }}>
+                    已經是使用者?  </Text>
                 <TouchableOpacity onPress={() => { navigation.navigate('LoginPage', {}) }}>
-                    <Text style={{ color: 'red' }}>login here</Text>
+                    <Text style={{ color: 'gray', fontSize: 12, textDecorationLine: 'underline' }}>點此登入</Text>
                 </TouchableOpacity>
 
             </View >
@@ -127,5 +121,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    }, text: {
+        color: "#3E1A00",
+        fontSize: 24,
+        fontWeight: "bold",
     },
 });

@@ -4,22 +4,21 @@ import image from "../main/pngs/login.png";
 import { SafeAreaView } from 'react-native-safe-area-context';
 export default function LandR({ navigation }) {
     return (
-        <SafeAreaView style={stylesV.container}>
+        <ImageBackground style={{ flex: 1, justifyContent: 'center' }}>
             <View style={stylesV.container}>
                 <Image style={{ position: 'absolute', resizeMode: 'stretch', width: '100%', height: '100%', top: '0%', left: '0%', }} source={image} />
-
-                <TouchableOpacity style={{ width: '85%', aspectRatio: 861 / 138, top: '22%' }} onPress={() => { navigation.navigate('LoginPage', {}) }}>
+                <TouchableOpacity style={{ marginTop: 30, width: '45%', height: '6%', top: '22%' }} onPress={() => { navigation.navigate('LoginPage', {}) }}>
                     <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={stylesV.text}>登入</Text>
                     </ImageBackground>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ width: '85%', aspectRatio: 861 / 138, top: '22%' }} onPress={() => { navigation.navigate('Regist', {}) }}>
+                <TouchableOpacity style={{ marginTop: 15, width: '45%', height: '6%', top: '22%' }} onPress={() => { navigation.navigate('Regist', {}) }}>
                     <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={stylesV.text}>註冊</Text>
                     </ImageBackground>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView >
+        </ImageBackground>
     )
 }
 
@@ -29,6 +28,8 @@ export default function LandR({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     image: {
         flex: 1,
@@ -69,8 +70,8 @@ const stylesV = StyleSheet.create({
         justifyContent: "center"
     },
     text: {
-        color: "white",
-        fontSize: 28,
+        color: "#3E1A00",
+        fontSize: 24,
         fontWeight: "bold",
     }
 });

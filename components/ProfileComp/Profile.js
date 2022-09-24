@@ -4,7 +4,7 @@ import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ImageBackgroun
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { AsyncStorage } from 'react-native';
-import { _userName_, _picture_ } from '../auth/Landing';
+import { Profile_data } from '../lib';
 
 const { width } = Dimensions.get('window');
 
@@ -68,10 +68,10 @@ export default function Profile({ navigation }) {
             <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                 <View style={{ width: '100%', alignItems: 'center', paddingTop: 16 }}>
                     <TouchableOpacity style={{ width: window.width * 0.4, height: undefined, aspectRatio: 1 / 1, backgroundColor: '#F48037', borderRadius: window.width * 0.4 / 2, padding: 4 }} onPress={() => { }}>
-                        <ImageBackground source={{ uri: _picture_ }} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: window.width * 0.4 / 2, overflow: 'hidden' }}>
+                        <ImageBackground source={{ uri: Profile_data.avatar }} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: window.width * 0.4 / 2, overflow: 'hidden' }}>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{_userName_}</Text>
+                    <Text style={{ color: '#2E1A47', fontSize: 25, textAlign: 'center' }}>{Profile_data.Username}</Text>
 
                     <TouchableOpacity onPress={() => { clickSetting() }} style={{ position: 'absolute', right: 4, top: 0, width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
                         <Image style={{ width: 32, height: 32 }} source={require('./assets/icon_setting.png')} />

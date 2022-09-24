@@ -8,27 +8,28 @@ export default function LoginPage({ navigation }) {
 
     const submit = () => {
         if (_id && _pw) {
+            navigation.navigate('Waiting', { ID: _id, Pw: _pw })
         } else {
             alert('請輸入帳號 和 密碼!')
         }
-        navigation.navigate('Waiting', { ID: _id, Pw: _pw })
     };
     return (
 
         <ImageBackground source={require('./assets/bg2.png')} style={{ flex: 1, justifyContent: 'center' }}>
 
             <View style={styles.container}>
-                <Text style={{ fontSize: 30 }}>REGISTER</Text>
+                <Text style={{ fontSize: 10 }}> </Text>
 
                 <TextInput
                     onChangeText={Name => { _id = Name }}
                     placeholder="Name"
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
                 <TextInput
@@ -36,28 +37,29 @@ export default function LoginPage({ navigation }) {
                     placeholder="Password"
                     secureTextEntry={true}
                     style={{
-                        backgroundColor: '#efefef',
+                        backgroundColor: '#ffffff',
                         padding: 10,
-                        width: '70%',
+                        width: '85%',
                         marginTop: 10,
                         fontSize: 18,
+                        borderRadius: 15
                     }}
                 />
+
                 <TouchableOpacity
                     activeOpacity={0.5}
                     onPress={submit}
-                    style={{ width: '100%' }}>
-                    <View
-                        style={{
-                            backgroundColor: 'red',
-                            padding: 14,
-                            marginTop: 10,
-                            width: '50%',
-                            marginLeft: '5%',
-                            alignSelf: 'center'
-                        }}>
-                        <Text style={{ textAlign: 'center', color: '#fff', fontSize: 18 }}>登入</Text>
-                    </View>
+                    style={{ width: '75%', aspectRatio: 861 / 138, top: '22%' }}>
+                    <ImageBackground source={require('./assets/btn1.png')} resizeMode="stretch" style={{ width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={styles.text}>登入</Text>
+                    </ImageBackground>
+                </TouchableOpacity>
+
+                <View style={{ height: 500 }}></View>
+                <Text style={{ textAlign: 'center', color: 'gray', fontSize: 14 }}>
+                    忘記密碼 ?  </Text>
+                <TouchableOpacity onPress={() => { navigation.navigate('ForgetPassWord', {}) }}>
+                    <Text style={{ color: 'gray', fontSize: 12, textDecorationLine: 'underline' }}>重設</Text>
                 </TouchableOpacity>
             </View>
 
@@ -71,5 +73,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    text: {
+        color: "#3E1A00",
+        fontSize: 24,
+        fontWeight: "bold",
     },
 });

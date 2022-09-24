@@ -4,7 +4,7 @@ const base_url = 'http://35.79.34.159/'
 const base_secret = 'Xx4JK5lIZiLLb2X'
 const base_Invitationcode = 'ruzf7wzRWwb8BUz'
 
-export let isLogin = false;
+export let StoreList;
 export const _setLogin = () => {
   isLogin = true;
 }
@@ -114,8 +114,8 @@ export const login = (username, id) => {
         data.User_Token = login.key
         GetReward()
         restoreToken()
-      } else {
-        alert("請完成Email認證!")
+        //getStore()
+        getProflie()
       }
     })
     .catch(error => { Alert.alert("error", JSON.stringify(error)); });
@@ -141,7 +141,8 @@ export const getProflie = () => {
       console.log(result)
       let Profile = JSON.parse(result);
       Profile_data.Username = Profile.data.username
-      Profile_data.avatar = Profile.data.avatar
+      Profile_data.avatar = Profile.data.avatar.replace("https", "http")
+      console.log("------------->" + Profile_data.avatar)
       Profile_data.skin = Profile.data.account.skin
       //Alert.alert("Profile ok", Profile.msg);
     })
@@ -258,6 +259,45 @@ export const GetReward = async () => {
     .catch(error => { Alert.alert("rewards error", JSON.stringify(error)); });
 }
 //#endregion
+export const getStore = () => {
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Token ${data.User_Token}`);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  fetch(`${base_url}/reward/exchange/store/list?category=1`, requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      console.log("store result :")
+      console.log(result)
+      StoreList = JSON.parse(result)
+    })
+    .catch(error => console.log('error', error));
+}
+export const resetPassword = (email) => {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "email": `${email}`
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch(`${base_url}/auth/passwprdreset/`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
 
 
 export let Reward_Data
