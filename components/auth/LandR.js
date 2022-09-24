@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Image, Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import image from "../main/pngs/login.png";
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 export default function LandR({ navigation }) {
     return (
         <SafeAreaView style={stylesV.container}>

@@ -15,7 +15,7 @@ export default function Main(props, navigation) {
     const EmptyScreen = () => {
         return null;
     }
-    const [tabIndex, setTabIndex] = React.useState(0);
+    const [tabIndex, setTabIndex] = useState(0);
     const [result, setResult] = useState(null);
 
     const _handlePressButtonAsync = async () => {

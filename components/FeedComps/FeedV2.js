@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text, View, Image, StyleSheet, Button, ScrollView, Dimensions, ImageBackground, TouchableOpacity, FlatList, Alert, RefreshControl } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Collapsible from 'react-native-collapsible';
-import BottomSheet from '@gorhom/bottom-sheet';
 import { Dialog } from 'react-native-simple-dialogs';
 import { GetReward, Reward_Data, RewardRedemption } from '../lib'
 const { width } = Dimensions.get('window');
@@ -21,8 +20,8 @@ let cgid = ''
 
 function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
 
-    const [coll, setCollapsed] = React.useState(collapsed);
-    const [collHeaderH, setCollHeaderH] = React.useState(null);
+    const [coll, setCollapsed] = useState(collapsed);
+    const [collHeaderH, setCollHeaderH] = useState(null);
 
     const clickColl = ({ item }) => {
         // console.log(window.getComputedStyle(ReactDOM.findDOMNode(this.refs.refCollHeaderH)).getPropertyValue("height"))
@@ -97,8 +96,8 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
 
 function CollapsibleItem2({ navigation, collapsed, data, setshowDialog2 }) {
 
-    const [coll, setCollapsed] = React.useState(collapsed);
-    const [collHeaderH, setCollHeaderH] = React.useState(null);
+    const [coll, setCollapsed] = useState(collapsed);
+    const [collHeaderH, setCollHeaderH] = useState(null);
     const clickbtn1 = (b) => {
         console.log(b)
         setshowDialog2(true)
@@ -192,11 +191,11 @@ export default function FeedV2({ navigation }) {
     // ref
     const bottomSheetRef = useRef(null);
     const bottomSheetRefCoupon = useRef(null);
-    const [ScrollViewH, setScrollViewH] = React.useState(0);
-    const [ScrollViewW, setScrollViewW] = React.useState(0);
-    const [ScrollIndex, setScrollIndex] = React.useState(0);
-    const [showDialog1, setshowDialog1] = React.useState(false);
-    const [showDialog2, setshowDialog2] = React.useState(false);
+    const [ScrollViewH, setScrollViewH] = useState(0);
+    const [ScrollViewW, setScrollViewW] = useState(0);
+    const [ScrollIndex, setScrollIndex] = useState(0);
+    const [showDialog1, setshowDialog1] = useState(false);
+    const [showDialog2, setshowDialog2] = useState(false);
 
     //Alert.alert("Reward", JSON.stringify(Reward_DATA))
 
@@ -208,7 +207,7 @@ export default function FeedV2({ navigation }) {
         console.log('handleSheetChanges', index);
     }, []);
 
-    const [checked, setChecked] = React.useState();
+    const [checked, setChecked] = useState();
 
     // _renderItem = ({ item, index }) => {
     //     return (
@@ -229,7 +228,7 @@ export default function FeedV2({ navigation }) {
         })
 
     };
-    const [refreshing, setRefreshing] = React.useState(false);
+    const [refreshing, setRefreshing] = useState(false);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         GetReward()

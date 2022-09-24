@@ -30,8 +30,8 @@ export default function Profile({ navigation }) {
         );
     }
     const window = useWindowDimensions();
-    const [index, setIndex] = React.useState(0);
-    const [routes] = React.useState([
+    const [index, setIndex] = useState(0);
+    const [routes] = useState([
         { key: 'first', title: 'NFT' },
         { key: 'second', title: 'LIKES' },
         { key: 't3', title: 'CARD' },

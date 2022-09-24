@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { View, Button, TextInput } from 'react-native'
 
 
 
 export default function Regist() {
-    const [email, setEmail] = React.useState("")
-    const [name, setName] = React.useState("")
-    const [pwd, setPwd] = React.useState("")
+    const [email, setEmail] = useState("")
+    const [name, setName] = useState("")
+    const [pwd, setPwd] = useState("")
 
     function onSignUp() {
 
