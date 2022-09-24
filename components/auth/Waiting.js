@@ -1,21 +1,23 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 import { _setLogin, isLogin } from '../lib';
-import { login, data } from '../lib';
+import { login, data, Reward_Data } from '../lib';
 const wait = timeout => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 };
 export default function Waiting({ navigation, route }) {
-
-    const submit = () => {
-        if (data.User_Token) {
-            wait(1000).then(() => {
-                if (data.User_Token)
-                    navigation.navigate('Main', {})
+    submit()
+    function submit() {
+        login(route.params.ID, route.params.Pw)
+        if (data.User_Token && Reward_Data) {
+            wait(500).then(() => {
+                navigation.navigate('Main', {})
+            })
+        } else {
+            wait(500).then(() => {
+                submit()
             })
         }
-        alert(route.params.ID + " " + route.params.Pw)
-        login(route.params.ID, route.params.Pw)
     };
     return (
         <ImageBackground source={require('./assets/bg2.png')} style={{ flex: 1, justifyContent: 'center' }}>

@@ -8,7 +8,7 @@ export default function Scan() {
 
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(true);
-    const [showD, setshowD] = React.useState(true);
+    const [showD, setshowD] = useState(true);
 
     useEffect(() => {
         (async () => {

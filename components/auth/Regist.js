@@ -22,13 +22,6 @@ export default function Regist({ navigation }) {
             } else {
                 alert('請輸入正確信箱!')
             }
-        } else {
-            let log = ""
-            log += _id === "" ? "請輸入名稱\n" : ""
-            log += _pw === "" ? "請輸入Pw1\n" : ""
-            log += _pw2 === "" ? "請輸入Pw2\n" : ""
-            log += _email === "" ? "請輸入Email\n" : ""
-            alert(log)
         }
     }
     return (

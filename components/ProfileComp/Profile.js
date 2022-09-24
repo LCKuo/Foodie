@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ImageBackground, Dimensions, useWindowDimensions, ScrollView, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
