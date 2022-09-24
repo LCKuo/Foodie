@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import { useState } from 'react';
 import { Registration } from '../lib';
 
 export default function Regist({ navigation }) {

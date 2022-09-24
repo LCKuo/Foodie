@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ImageBackground, Dimensions, useWindowDimensions, ScrollView, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Divider } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { userName } from '../auth/Landing';
 import { AsyncStorage } from 'react-native';
 import { _userName_, _picture_ } from '../auth/Landing';
 
