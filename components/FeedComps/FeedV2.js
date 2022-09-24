@@ -65,7 +65,7 @@ function CollapsibleItem({ navigation, collapsed, data, setshowDialog1 }) {
             {!coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/hand-drawn-ui.png')} />}
             {coll && <Image style={{ zIndex: 1, position: 'absolute', resizeMode: 'stretch', width: '100%', height: undefined, aspectRatio: 1071 / 270, top: 52, left: '0%', }} source={require('./assets/nonbutton.png')} />}
             {/* 下半摺疊選單 */}
-            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3' }}>
+            <Collapsible collapsed={!coll} style={{ width: '100%', height: undefined, aspectRatio: temp, zIndex: 8, backgroundColor: '#FFF3E3', marginTop: -collHeaderH }}>
                 <Image style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', resizeMode: 'stretch', zIndex: 0 }} source={require('./assets/coll_bg.png')} />
                 <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: collHeaderH }}>
 
