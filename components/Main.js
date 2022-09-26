@@ -10,7 +10,7 @@ import { View, Image, StyleSheet, Button, Text } from 'react-native';
 import { Platform } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
-
+export let isScanFocus = false;
 export default function Main(props, navigation) {
     const EmptyScreen = () => {
         return null;
@@ -45,6 +45,7 @@ export default function Main(props, navigation) {
                     listeners={{
                         tabPress: e => {
                             //e.preventDefault();
+                            isScanFocus = false;
                             setTabIndex(0);
                         },
                     }}
@@ -72,6 +73,7 @@ export default function Main(props, navigation) {
                     listeners={{
                         tabPress: e => {
                             //e.preventDefault();
+                            isScanFocus = false;
                             setTabIndex(1);
                         },
                     }}
@@ -96,6 +98,7 @@ export default function Main(props, navigation) {
                     listeners={({ navigation }) => ({
                         tabPress: event => {
                             setTabIndex(2);
+                            isScanFocus = true
                             //event.preventDefault();
                             //navigation.navigate("Add")
                         }
@@ -123,6 +126,7 @@ export default function Main(props, navigation) {
                             //e.preventDefault()
                             setTabIndex(4);
                             _handlePressButtonAsync()
+                            isScanFocus = false;
                         },
                     }}
                     options={{
@@ -150,6 +154,7 @@ export default function Main(props, navigation) {
                         tabPress: e => {
                             //e.preventDefault()
                             setTabIndex(5);
+                            isScanFocus = false;
                         },
                     }}
                     options={{
@@ -194,6 +199,7 @@ export default function Main(props, navigation) {
                         tabPress: e => {
                             //e.preventDefault();
                             setTabIndex(0);
+                            isScanFocus = false;
                         },
                     }}
                     options={{
@@ -221,6 +227,7 @@ export default function Main(props, navigation) {
                         tabPress: e => {
                             //e.preventDefault();
                             setTabIndex(1);
+                            isScanFocus = false;
                         },
                     }}
                     options={{
@@ -246,6 +253,7 @@ export default function Main(props, navigation) {
                             setTabIndex(2);
                             //event.preventDefault();
                             //navigation.navigate("Add")
+                            isScanFocus = true;
                         }
                     })}
                     options={{
@@ -272,6 +280,7 @@ export default function Main(props, navigation) {
                             //e.preventDefault()
                             setTabIndex(4);
                             _handlePressButtonAsync()
+                            isScanFocus = false;
                         },
                     }}
                     options={{
@@ -298,6 +307,7 @@ export default function Main(props, navigation) {
                         tabPress: e => {
                             //e.preventDefault()
                             setTabIndex(5);
+                            isScanFocus = false;
                         },
                     }}
                     options={{

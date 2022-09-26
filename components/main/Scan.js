@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { reward, _setToken } from '../lib';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { isScanFocus } from '../Main';
 export default function Scan() {
 
     const [hasPermission, setHasPermission] = useState(null);
@@ -18,7 +18,7 @@ export default function Scan() {
     }, []);
 
     const handleBarCodeScanned = ({ type, data }) => {
-        if (scanned) {
+        if (scanned && isScanFocus) {
             setScanned(false)
             createTwoButtonAlert(type, data)
         }
