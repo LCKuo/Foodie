@@ -1,14 +1,34 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-
+import { startLogin, data, login } from '../lib';
+const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+};
 export default function LoginPage({ navigation }) {
 
     let _id = ""
     let _pw = ""
 
+    const checkLogin = () => {
+        wait(300).then(() => {
+            if (!startLogin) {
+                if (data.User_Token) {
+                    navigation.navigate('Main')
+                } else {
+                    navigation.navigate('Waiting', { ID: _id, Pw: _pw })
+                }
+            } else {
+                checkLogin()
+            }
+        })
+    }
+
     const submit = () => {
         if (_id && _pw) {
-            navigation.navigate('Waiting', { ID: _id, Pw: _pw })
+            login(_id, _pw)
+            wait(100).then(() => {
+                checkLogin()
+            })
         } else {
             alert('請輸入帳號 和 密碼!')
         }

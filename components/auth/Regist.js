@@ -1,20 +1,36 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import { Registration } from '../lib';
-
+import { Registration, startReg, regError } from '../lib';
+const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+};
 export default function Regist({ navigation }) {
     let _id = ""
     let _pw = ""
     let _pw2 = ""
     let _email = ""
     let _invite = ""
+
+    const checkReg = () => {
+        wait(300).then(() => {
+            if (!startReg) {
+                if (!regError) {
+                    navigation.navigate('Waiting', { ID: _id, Pw: _pw })
+                }
+            }
+            else {
+                checkReg()
+            }
+        })
+    }
     const submit = () => {
         if (_id && _pw && _pw2 && _email) {
             if (_email.includes("@")) {
                 if (_pw === _pw2) {
                     Registration(_id, _pw, _email, _invite)
-                    navigation.navigate('Waiting', { ID: _id, Pw: _pw })
-
+                    wait(100).then(() => {
+                        checkReg()
+                    })
                 } else {
                     alert('請確認密碼一致!')
                 }
