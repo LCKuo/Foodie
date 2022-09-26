@@ -91,7 +91,7 @@ export const Registration = (username, id, email, invitation) => {
       }
       startReg = false
     })
-    .catch(error => { Alert.alert("error", JSON.stringify(error)); });
+    .catch(error => { });
 }
 /*登入*/
 export let startLogin = false
@@ -127,7 +127,7 @@ export const login = (username, id) => {
       }
       startLogin = false
     })
-    .catch(error => { Alert.alert("error", JSON.stringify(error)); });
+    .catch(error => { });
 }
 /*Profile*/
 export const getProflie = () => {
@@ -213,7 +213,7 @@ export const reward = (secret) => {
       Alert.alert('onPress', JSON.stringify(response));
     })
     .catch(error => {
-      Alert.alert("error", JSON.stringify(error));
+
     });
 }
 
@@ -241,7 +241,7 @@ export const RewardRedemption = (id) => {
       let Recall = JSON.parse(response);
       //Alert.alert('ok', JSON.stringify(Recall.msg));
     })
-    .catch(error => { Alert.alert("error", JSON.stringify(error)); });
+    .catch(error => { });
 }
 /*獲取優惠資訊*/
 export const GetReward = async () => {
