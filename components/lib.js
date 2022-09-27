@@ -43,6 +43,12 @@ export const test = (local) => {
   Alert.alert(local);
 }
 
+export const clearAll = () => {
+  data.User_Token = ''
+  loginError = ''
+  regError = ''
+}
+
 //#region 註冊/登入/用戶資料獲取
 /*註冊*/
 export let startReg = false
@@ -95,8 +101,10 @@ export const Registration = (username, id, email, invitation) => {
 }
 /*登入*/
 export let startLogin = false
+export let loginError = ''
 export const login = (username, id) => {
   startLogin = true
+  loginError = ''
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("Cookie", "csrftoken=iPftGyB5kalUGLd2KIpb2qeekgpeXnB8; messages=.eJzVzksKg0AMgOGrSNZBbDCOnsXI4CPjg7aCY-7f9gRSmI3bf_Hxty14v8X97V8aYz8rYIHECGKlKmfjsp4azzwXq7UffjVMYhU9CjGmJoi5yn07B2ZAgA6vxbRa-r_E4tPGNehROyK6F_uP230Axk61lg:1oWCtt:IYKLaP31QbqbgqmNwBoDyTDyPPG1nbdld0iF3JZmEXA; sessionid=y4v2ede36aqlxuie4icpvq3ey3twp89f");
@@ -124,6 +132,8 @@ export const login = (username, id) => {
         restoreToken()
         getStore()
         getProflie()
+      } else {
+        loginError = result
       }
       startLogin = false
     })

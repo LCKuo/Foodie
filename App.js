@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Search from './components/SearchComps/Search';
 import SearchLevel2 from './components/SearchComps/SearchLevel2';
 import SearchLevel3 from './components/SearchComps/SearchLevel3';
-import { isLogin } from './components/lib';
+import { isLogin, clearAll } from './components/lib';
 
 import Waiting from './components/auth/Waiting'
 import Regist from './components/auth/Regist'
@@ -53,6 +53,7 @@ export class App extends Component {
 
   componentDidMount() {
     this.checkLogin();
+    clearAll();
   }
 
   doLoading = () => {

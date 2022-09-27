@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import { startLogin, data, login } from '../lib';
+import { startLogin, data, login, loginError } from '../lib';
 const wait = timeout => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 };

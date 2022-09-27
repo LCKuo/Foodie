@@ -4,7 +4,7 @@ import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ImageBackgroun
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { AsyncStorage } from 'react-native';
-import { Profile_data } from '../lib';
+import { Profile_data, clearAll } from '../lib';
 
 const { width } = Dimensions.get('window');
 
@@ -60,6 +60,7 @@ export default function Profile({ navigation }) {
         } catch (e) {
 
         }
+        clearAll()
         navigation.navigate('LandR', {})
     };
 
