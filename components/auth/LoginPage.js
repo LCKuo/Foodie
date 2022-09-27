@@ -13,9 +13,11 @@ export default function LoginPage({ navigation }) {
         wait(300).then(() => {
             if (!startLogin) {
                 if (data.User_Token != '') {
-                    navigation.navigate('Main')
-                } else if (!loginError) {
-                    navigation.navigate('Waiting', { ID: _id, Pw: _pw })
+                    navigation.navigate('Main')//登入成功，跳主畫面
+                } else if (loginError.non_field_errors === 'E-mail is not verified.') {
+                    navigation.navigate('Waiting', { ID: _id, Pw: _pw })//跳等待畫面
+                } else if (loginError.non_field_errors === '无法使用提供的认证信息登录。') {
+                    alert(loginError.non_field_errors)//帳號或密馬錯誤，僅alert，不做跳頁
                 }
             } else {
                 checkLogin()

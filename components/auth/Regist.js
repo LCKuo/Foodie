@@ -16,7 +16,18 @@ export default function Regist({ navigation }) {
             if (!startReg) {
                 if (!regError) {
                     navigation.navigate('Waiting', { ID: _id, Pw: _pw })
+                } else {
+                    if (regError.username) {
+                        alert(regError.username)
+                    } else if (regError.email) {
+                        alert(regError.email)
+                    } else if (regError.password1) {
+                        alert(regError.password1)
+                    } else if (regError.invitation_code) {
+                        alert(regError.invitation_code)
+                    }
                 }
+
             }
             else {
                 checkReg()
