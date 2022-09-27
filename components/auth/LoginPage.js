@@ -12,9 +12,9 @@ export default function LoginPage({ navigation }) {
     const checkLogin = () => {
         wait(300).then(() => {
             if (!startLogin) {
-                if (data.User_Token) {
+                if (data.User_Token != '') {
                     navigation.navigate('Main')
-                } else {
+                } else if (!loginError) {
                     navigation.navigate('Waiting', { ID: _id, Pw: _pw })
                 }
             } else {
